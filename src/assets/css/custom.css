@@ -1,6 +1,14 @@
 .admin-login-text {
-    margin-top: 50px;
+    margin-top: 40px;
     margin-bottom: 25px;
+}
+
+.admin-header-text {
+    font-weight: 300;
+}
+
+.admin-bold {
+    font-weight: 600;
 }
 
 .grizz-logo-img {

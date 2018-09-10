@@ -18,7 +18,7 @@ class Login extends Component {
                 <img className="img-fluid" src={GrizzLogo} alt=""/>
             </div>
             <div className="admin-login-text">
-                <h1><strong>Admin</strong> Portal</h1>
+                <h3 className="admin-header-text"><span className="admin-bold">Admin</span> Portal</h3>
                 <hr/>
             </div>
         </div>

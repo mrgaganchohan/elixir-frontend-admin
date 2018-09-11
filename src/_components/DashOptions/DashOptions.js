@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import '../../assets/css/custom.css';
 
+import {Link} from 'react-router-dom';
+
 
 class DashOptions extends Component {
     render() {
         return(
-            <div className="container">
-                <ul className="nav nav-pills nav-fill mb-4">
+            <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+              <div class="container">
+              <ul className="nav nav-pills nav-fill mb-4">
                     <li className="nav-item">
-                        <a className="nav-link active radius-item" href="#">Products</a>
+                        <Link className="nav-link active radius-item" href="#" to="/products">Products</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link radius-item" href="#">Vendors</a>
+                        <Link className="nav-link radius-item" href="#" to="/">Vendors</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link radius-item" href="#">Category</a>
+                        <Link className="nav-link radius-item" href="#" to="/">Category</Link>
                     </li>
                 </ul>
-          </div>
+              </div>
+          </main>
         )
     }
 }

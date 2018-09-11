@@ -5,6 +5,7 @@ import '../../assets/css/custom.css';
 
 import Navbar from "../Navbar/Navbar";
 import UserProfile from '../UserProfile/UserProfile';
+import DashOptions from '../DashOptions/DashOptions';
 
 class Dashboard extends Component {
 
@@ -22,17 +23,7 @@ class Dashboard extends Component {
     </div>
 
            <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-          <section className="row text-center">
-            <div className="col-6 col-sm-4" Style="border:1px solid black;">
-              <h4>PRODUCTS</h4>
-            </div>
-            <div className="col-6 col-sm-4" Style="border:1px solid black;">
-              <h4>VENDORS</h4>
-            </div>
-            <div className="col-6 col-sm-4" Style="border:1px solid black;">
-              <h4>CATEGORY</h4>
-            </div>
-          </section>
+           <DashOptions />
 
           <section className="row text-center placeholders">
             <div className="col-6 col-sm-3 placeholder">

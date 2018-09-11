@@ -1,3 +1,8 @@
+html, body {
+    font-family: 'Lato', sans-serif;
+    height: 100% !important;
+}
+
 .admin-login-text {
     margin-top: 40px;
     margin-bottom: 25px;
@@ -24,3 +29,61 @@
     padding-left: 20px;
     padding-right: 20px;
 }
+
+.padding-0 {
+    padding: 0px;
+}
+
+.nav-logo-text {
+    padding-left: 10px;
+}
+
+.nav-bg-custom {
+    background-color: #ffffff;
+    box-shadow: 0px 5px 30px -7px rgba(0,0,0,0.3);
+    z-index: 200 !important;
+}
+
+.sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-image: linear-gradient(#9CECFB, #65C7F7, #A5FECB);
+}
+
+.userside-container {
+    color: #fff;
+}
+
+.user-profile-avatar {
+    width: 140px;
+    height: 140px;
+    background-color: #55efc4;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid #fff;
+}
+
+.initials {
+    position: relative;
+    top: 35px; /* 25% of parent */
+    font-size: 65px; /* 50% of parent */
+    line-height: 70px; /* 50% of parent */
+    color: #fff;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+      background-color: #1B9CFC;
+      color: #fff;
+  }
+
+  .radius-item {
+      border-radius: 20px !important;
+  }

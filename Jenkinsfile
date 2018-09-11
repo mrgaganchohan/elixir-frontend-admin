@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-    CI = 'true'
-  }
     stages {
       
       stage('Build') {
@@ -14,7 +11,7 @@ pipeline {
       
       stage('Test') {
         steps {
-          sh './jenkins/scripts/test-front-end-admin-portal.sh'
+          sh './scripts/test-front-end-admin-portal.sh'
         }
       }
     }

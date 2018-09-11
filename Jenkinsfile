@@ -17,7 +17,8 @@ pipeline {
       
       stage('Deployment Stage') {
         steps {
-          sh '/var/lib/jenkins/scripts/deploy-front-end-admin-portal.sh'
+         // sh '/var/lib/jenkins/scripts/deploy-front-end-admin-portal.sh'
+          sh 'echo "deploy stage"'
         }
       }
     }

@@ -11,7 +11,7 @@ pipeline {
       
       stage('Test') {
         steps {
-          sh './scripts/test-front-end-admin-portal.sh'
+          sh '.${WORKSPACE}/jenkins/scripts/test-front-end-admin-portal.sh'
         }
       }
     }

@@ -6,15 +6,15 @@ class DashOptions extends Component {
     render() {
         return(
             <div className="container">
-                <ul class="nav nav-pills nav-fill mb-4">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Products</a>
+                <ul className="nav nav-pills nav-fill mb-4">
+                    <li className="nav-item">
+                        <a className="nav-link active radius-item" href="#">Products</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Vendors</a>
+                    <li className="nav-item">
+                        <a className="nav-link radius-item" href="#">Vendors</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Category</a>
+                    <li className="nav-item">
+                        <a className="nav-link radius-item" href="#">Category</a>
                     </li>
                 </ul>
           </div>

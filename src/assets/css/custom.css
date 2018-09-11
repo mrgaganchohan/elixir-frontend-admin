@@ -74,7 +74,16 @@ html, body {
 .initials {
     position: relative;
     top: 35px; /* 25% of parent */
-    font-size: 70px; /* 50% of parent */
+    font-size: 65px; /* 50% of parent */
     line-height: 70px; /* 50% of parent */
     color: #fff;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+      background-color: #1B9CFC;
+      color: #fff;
+  }
+
+  .radius-item {
+      border-radius: 20px !important;
   }

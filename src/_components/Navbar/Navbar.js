@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import '../../assets/bootstrap/css/bootstrap.min.css';
 
 import NavLogo from '../../assets/images/grizz-nav.png';
+import '../../assets/css/custom.css';
 
 class Navbar extends Component {
 
@@ -17,7 +19,7 @@ class Navbar extends Component {
                             <p className="nav-link mb-0">Hello, Andy</p>
                         </li>
                         <li class="nav-item">
-                            <button className="btn btn-outline-primary">Logout</button>
+                            <button className="btn btn-outline-primary login-form-radius">Logout</button>
                         </li>
                     </ul>
                 </div>

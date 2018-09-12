@@ -2,10 +2,19 @@ import React, { Component } from 'react';
 
 import DashOptions from '../DashOptions/DashOptions';
 
+//TODO: 
+//Add props to change active tab relative to component rendered.
+
 class Content extends Component {
+
+    constructor(props) {
+        super(props);
+        console.log("PROPERTIES",this.props)
+    }
+
     render() {
         return(
-            <DashOptions />
+            <DashOptions activeTab={this.props.page}/>
         )
     }
 }

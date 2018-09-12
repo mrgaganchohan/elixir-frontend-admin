@@ -6,6 +6,7 @@ import Dashboard from './_components/Dashboard/Dashboard';
 import DashOptions from './_components/DashOptions/DashOptions';
 import Products from './_components/Products/Products';
 import Content from './_components/Dashboard/Content';
+import ViewProduct from './_components/Products/ViewProduct';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Products}/>
                     <Route path="/products" component={Products}/>
+                    <Route path="/product/view" component={ViewProduct}/>
                 </Switch>
           </BrowserRouter>
       </div>

@@ -19,7 +19,7 @@ class Navbar extends Component {
                             <p className="nav-link mb-0">Hello, <span className="pl-1">Helen</span></p>
                         </li>
                         <li className="nav-item">
-                            <button className="btn btn-outline-primary login-form-radius">Logout</button>
+                            <button className="btn btn-outline-primary login-form-radius"><span className="fa fa-power-off pr-2"></span>Logout</button>
                         </li>
                     </ul>
                 </div>

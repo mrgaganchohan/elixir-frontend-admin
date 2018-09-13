@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import '../../assets/css/custom.css';
 
 class UserProfile extends Component {
@@ -28,6 +29,7 @@ class UserProfile extends Component {
                     </div>
                 </div>
             </div>
+            
           </nav>
         )
     }

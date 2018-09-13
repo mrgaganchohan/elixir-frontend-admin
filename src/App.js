@@ -9,6 +9,8 @@ import Content from './_components/Dashboard/Content';
 import ViewProduct from './_components/Products/ViewProduct';
 import AddProduct from './_components/Products/AddProduct';
 import PathNotFound from './_components/Error/PathNotFound';
+import Settings from './_components/Settings/Settings';
+import SettingsButton from './_components/Settings/SettingsButton';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -23,6 +25,7 @@ class App extends Component {
                     <Route path="/products" component={Products}/>
                     <Route path="/product/view" component={ViewProduct}/>
                     <Route path="/product/add" component={AddProduct}/>
+                    <Route path="/settings" component={Settings} />
                     <Route component={PathNotFound} />
                 </Switch>
           </BrowserRouter>

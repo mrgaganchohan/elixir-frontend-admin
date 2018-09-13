@@ -3,11 +3,16 @@ import "../../assets/css/custom.css";
 import {Link} from 'react-router-dom';
 import ProductsTable from './ProductsTable';
 
+import SettingsButton from '../Settings/SettingsButton';
+
+
 class ProductForm extends Component {
 
     render() {
         return(
-            <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <div>
+                <SettingsButton />
+                <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
                 <h3 className="text-left"><span className="fa fa-search pr-2"></span>Find a Product</h3>
                <div className="row">
                     <div className="col-lg-3">
@@ -32,12 +37,13 @@ class ProductForm extends Component {
                          </select>
                     </div>
                     <div className="col-lg-2 col-md-2">
-                        <Link className="btn btn-primary cog-radius btn-block" to="/product/add">Add Product</Link>
+                        <Link className="btn btn-primary cog-radius btn-block" to="/product/add"><span className="fa fa-plus pr-2"></span>Add Product</Link>
                     </div>
                    
                </div>
                <ProductsTable />
             </main>
+            </div>
         )
     }
 

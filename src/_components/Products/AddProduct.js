@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Content from '../Dashboard/Content';
+import SettingsButton from '../Settings/SettingsButton';
 
 import "../../assets/css/custom.css";
 
@@ -10,7 +11,7 @@ class AddProduct extends Component {
         return(
             <div>
                 <Content page="PRODUCTS" />
-
+                <SettingsButton />
                 <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
                 <div>
                     <h1 className="text-left">Add Product</h1>

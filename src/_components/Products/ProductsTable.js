@@ -9,7 +9,7 @@ class ProductsTable extends Component {
 
     render() {
         return(
-            <table className="table mt-3">
+            <table className="table table-striped mt-3">
                 <thead>
                     <tr className="d-flex">
                         <th className="p-2 text-left col-lg-3">Name</th>
@@ -20,6 +20,8 @@ class ProductsTable extends Component {
                     </tr>
                 </thead>
                 <tbody>
+                    <ProductTableRow />
+                    <ProductTableRow />
                     <ProductTableRow />
                 </tbody>
             </table>

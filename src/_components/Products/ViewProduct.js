@@ -33,10 +33,17 @@ class ViewProduct extends Component {
                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
                         <div className="col-12 pl-0">
-                            <Link className="btn btn-primary cog-radius middle" to="/products"><span className="fa fa-chevron-left pr-2"></span> Back to Products</Link>
+                           
                         </div>
                     </div>
                </div>
+
+                <div className="row">
+                    <div className="col-11">
+                    <Link className="btn btn-outline-primary cog-radius float-right" to="/products"><span className="fa fa-chevron-left pr-2"></span> Back to Products</Link>
+                    </div>
+               </div>
+
 
                 </main>
 

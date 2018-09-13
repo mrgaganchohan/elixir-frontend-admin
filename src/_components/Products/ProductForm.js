@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../../assets/css/custom.css";
-
+import {Link} from 'react-router-dom';
 import ProductsTable from './ProductsTable';
 
 class ProductForm extends Component {
@@ -32,7 +32,7 @@ class ProductForm extends Component {
                          </select>
                     </div>
                     <div className="col-lg-2 col-md-2">
-                        <button className="btn btn-primary cog-radius btn-block">Add Product</button>
+                        <Link className="btn btn-primary cog-radius btn-block" to="/product/add">Add Product</Link>
                     </div>
                    
                </div>

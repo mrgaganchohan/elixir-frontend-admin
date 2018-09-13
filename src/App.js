@@ -21,11 +21,11 @@ class App extends Component {
        <Dashboard />
        <BrowserRouter>
                 <Switch>
-                    <Route exact path="/" component={Products}/>
-                    <Route path="/products" component={Products}/>
-                    <Route path="/product/view" component={ViewProduct}/>
-                    <Route path="/product/add" component={AddProduct}/>
-                    <Route path="/settings" component={Settings} />
+                    <Route exact path="/admin" component={Products}/>
+                    <Route path="/admin/products" component={Products}/>
+                    <Route path="/admin/product/view" component={ViewProduct}/>
+                    <Route path="/admin/product/add" component={AddProduct}/>
+                    <Route path="/admin/settings" component={Settings} />
                     <Route component={PathNotFound} />
                 </Switch>
           </BrowserRouter>

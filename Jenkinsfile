@@ -20,9 +20,7 @@ pipeline {
       
       stage('Deployment Stage') {
         steps {
-          sh 'echo "Deploying Project"'
-          sh 'rm -rf /opt/frontend-admin/*'
-          sh 'cp -R build/* /opt/frontend-admin/'
+          sh '/var/lib/jenkins/scripts/deploy_admin_portal.sh'
         }
       }
     }

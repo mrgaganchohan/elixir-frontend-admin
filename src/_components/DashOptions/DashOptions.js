@@ -33,8 +33,8 @@ class DashOptions extends Component {
             case "CATEGORY":
                 tiles = {
                     products: "",
-                    vendors: "active",
-                    category: ""
+                    vendors: "",
+                    category: "active"
                 }
                 break;
         }
@@ -42,7 +42,7 @@ class DashOptions extends Component {
         return(
             <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
               <div className="container">
-              <ul className="nav nav-pills nav-fill mb-4">
+              <ul className="nav nav-pills nav-fill mb-2">
                     <li className="nav-item mr-1">
                         <Link className={`nav-link ${tiles.products} radius-item dash-option-bord`} href="#" to="/products">Products</Link>
                     </li>

@@ -4,10 +4,7 @@ pipeline {
       
       stage('Build Stage') {
         steps {
-          sh 'echo "Running NPM install"'
-          sh 'npm install'
-          sh 'echo "Building Project"'
-          sh 'npm run build'
+          sh '/var/lib/jenkins/scripts/build_admin_portal.sh'
         }
       }
       

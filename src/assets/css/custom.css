@@ -121,3 +121,7 @@ html, body {
       color: rgb(158, 158, 158);
       font-weight: 100;
   }
+
+  .big-icon-color {
+      color: #40739e;
+  }

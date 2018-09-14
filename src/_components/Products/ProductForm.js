@@ -13,7 +13,7 @@ class ProductForm extends Component {
             <div>
                 <SettingsButton />
                 <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-                <h3 className="text-left"><span className="fa fa-search pr-2"></span>Find a Product</h3>
+                <h3 className="text-left"><span className="fa fa-search pr-2 big-icon-color"></span>Find a Product</h3>
                <div className="row">
                     <div className="col-lg-3">
                          <input type="text" className="form-control" id="inputPassword2" placeholder="Search by Product Name" />

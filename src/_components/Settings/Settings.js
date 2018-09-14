@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
+import '../../assets/css/custom.css';
+
 
 class Settings extends Component {
     render() {
         return (
             <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-               <h1 className="text-left mt-2"><span className="fa fa-cog pr-2"></span>Profile Settings</h1>
+               <h1 className="text-left mt-2"><span className="fa fa-cog pr-2 big-icon-color"></span>Profile Settings</h1>
                <hr />
                 <div className="container">
                     <div className="row">

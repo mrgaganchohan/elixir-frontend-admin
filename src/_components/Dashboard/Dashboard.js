@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import '../../assets/bootstrap/css/bootstrap.min.css';
-import GrizzLogo from '../../assets/images/grizz-logo.png';
 import '../../assets/css/custom.css';
 
 import Navbar from "../Navbar/Navbar";
 import UserProfile from '../UserProfile/UserProfile';
-import DashOptions from '../DashOptions/DashOptions';
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getAdminInfo } from '../../actions/adminActions';
+import store from '../../store/store';
 
 class Dashboard extends Component {
 
@@ -13,17 +16,42 @@ class Dashboard extends Component {
         super(props);
     }
 
+    componentWillMount() {
+        this.props.getAdminInfo("andysek@test.com");
+       
+    }
+
   render() {
+    console.log("ADMIN data will mount: ", this.props.adminDetails);
+    console.log("IsAuthed ", this.props.isAuthenticated)
+    let adminName = "";
+    let sideBarData = {};
+
+    if(this.props.adminDetails) {
+        adminName = this.props.adminDetails.name;
+        sideBarData = this.props.adminDetails;
+    }
+    
     return (
         <div className="container-fluid padding-0 h-100">
-            <Navbar />
-
+            <Navbar adminName={adminName}/>
             <div className="row">
-                <UserProfile />
+                <UserProfile sbData={sideBarData}/>
             </div>
      </div>
     );
   }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+    getAdminInfo: PropTypes.func.isRequired,
+    adminDetails: PropTypes.object,
+    isAuthenticated: PropTypes.bool
+}
+
+const mapStateToProps = state => ({
+    adminDetails: state.adminData.adminDetails,
+    isAuthenticated: state.adminData.isAuthenticated
+})
+
+export default connect(mapStateToProps, {getAdminInfo})(Dashboard);

@@ -3,7 +3,7 @@ import adminReducer from './adminReducer';
 
 
 const allReducers = combineReducers({
-    adminInfo: adminReducer
+    adminData: adminReducer
 })
 
 export default allReducers;

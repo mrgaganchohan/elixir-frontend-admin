@@ -16,7 +16,7 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="nav navbar-nav ml-auto">
                         <li className="nav-item active pr-4">
-                            <p className="nav-link mb-0">Hello, <span className="pl-1">Helen</span></p>
+                            <p className="nav-link mb-0">Hello, <span className="pl-1">{this.props.adminName}</span></p>
                         </li>
                         <li className="nav-item">
                             <button className="btn btn-outline-primary login-form-radius"><span className="fa fa-power-off pr-2"></span>Logout</button>

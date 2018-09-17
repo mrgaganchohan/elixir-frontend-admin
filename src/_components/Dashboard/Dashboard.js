@@ -7,6 +7,7 @@ import '../../assets/css/custom.css';
 
 import Navbar from "../Navbar/Navbar";
 import UserProfile from '../UserProfile/UserProfile';
+import store from '../../store/store';
 
 class Dashboard extends Component {
 
@@ -16,6 +17,7 @@ class Dashboard extends Component {
 
     componentWillMount() {
         this.props.getAdminInfo("andysek@test.com");
+        console.log(store.getState());
     }
 
   render() {

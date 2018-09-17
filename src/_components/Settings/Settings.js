@@ -14,7 +14,7 @@ class Settings extends Component {
     }
 
     componentWillMount() {
-        this.props.getAdminInfo("andysek@test.com");
+        console.log(this.props.adminDetails);
     }
 
     handleChangeName(e){

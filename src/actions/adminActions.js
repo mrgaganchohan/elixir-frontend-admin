@@ -13,3 +13,5 @@ export const getAdminInfo = (email) => dispatch => {
         payload: adminData.data
     }));
 }
+
+//implement update admin information (to be used in settings page)

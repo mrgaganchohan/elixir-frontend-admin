@@ -13,7 +13,6 @@ class UserProfile extends Component {
 
         if(this.props.sbData.name) {
             initials = this.props.sbData.name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
-            
         }
 
         return (

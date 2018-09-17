@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getAdminInfo } from '../../actions/adminActions';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import '../../assets/css/custom.css';
 
 import Navbar from "../Navbar/Navbar";
 import UserProfile from '../UserProfile/UserProfile';
-
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getAdminInfo } from '../../actions/adminActions';
-import store from '../../store/store';
 
 class Dashboard extends Component {
 
@@ -18,7 +16,6 @@ class Dashboard extends Component {
 
     componentWillMount() {
         this.props.getAdminInfo("andysek@test.com");
-       
     }
 
   render() {
@@ -31,7 +28,7 @@ class Dashboard extends Component {
         adminName = this.props.adminDetails.name;
         sideBarData = this.props.adminDetails;
     }
-    
+
     return (
         <div className="container-fluid padding-0 h-100">
             <Navbar adminName={adminName}/>

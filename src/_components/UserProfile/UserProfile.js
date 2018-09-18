@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import '../../assets/css/custom.css';
 
 class UserProfile extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         let initials = ""; 
 
         if(this.props.sbData.name) {
-            initials = this.props.sbData.name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1),'')
+            initials = this.props.sbData.name.split(/\s/).reduce((response,word)=> response+=word.slice(0,1).toUpperCase(),'')
         }
 
         return (
@@ -39,11 +34,9 @@ class UserProfile extends Component {
                     </div>
                 </div>
             </div>
-            
           </nav>
         )
     }
-
 }
 
 export default UserProfile;

@@ -37,6 +37,8 @@ class DashOptions extends Component {
                     category: "active"
                 }
                 break;
+            default:
+                return;
         }
 
         return(

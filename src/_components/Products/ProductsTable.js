@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import ProductTableRow from './ProductTableRow';
 
 class ProductsTable extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return(
             <table className="table table-striped mt-3">

@@ -15,10 +15,11 @@ export default (state = initialState, action) => {
                 isAuthenticated: true
             }
         case ADMIN_UPDATE_INFO:
-            console.log("reducer for fetch user info");
+            console.log("update admin user information");
+            console.log(action.payload);
             return {
                 ...state,
-                users: action.payload
+                adminDetails: action.payload
             }
         default:
             return "";

@@ -24,7 +24,7 @@ class ViewProduct extends Component {
                <div className="row marg-top-25">
                     <div className="col-lg-4 col-md-12">
                         <div className="w-100 h-100 cog-radius">
-                           <img width="100%" height="400" />
+                           <img width="100%" height="400" alt=""/>
                         </div>
                     </div>
                     <div className="col-lg-5 col-md-6">

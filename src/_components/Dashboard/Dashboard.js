@@ -4,38 +4,40 @@ import { connect } from 'react-redux';
 import { getAdminInfo } from '../../actions/adminActions';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import '../../assets/css/custom.css';
-
 import Navbar from "../Navbar/Navbar";
 import UserProfile from '../UserProfile/UserProfile';
-import store from '../../store/store';
 
 class Dashboard extends Component {
 
     constructor(props) {
         super(props);
+        this.adminName = "";
+        this.sideBarData = {};
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.getAdminInfo("andysek@test.com");
-        console.log(store.getState());
+        //console.log("will Mount dash", this.props.adminDetails);
+        if(this.props.adminDetails) {
+            this.adminName = this.props.adminDetails.name;
+            //this.sideBarData = this.props.adminDetails;
+        }
     }
 
   render() {
-    console.log("ADMIN data will mount: ", this.props.adminDetails);
-    console.log("IsAuthed ", this.props.isAuthenticated)
-    let adminName = "";
-    let sideBarData = {};
 
     if(this.props.adminDetails) {
-        adminName = this.props.adminDetails.name;
-        sideBarData = this.props.adminDetails;
+        // console.log(store.getState())
+        // console.log("details",this.props.adminDetails);
+        this.sideBarData = this.props.adminDetails;
+        this.adminName = this.props.adminDetails.name;
     }
 
     return (
         <div className="container-fluid padding-0 h-100">
-            <Navbar adminName={adminName}/>
+            <Navbar adminName={this.adminName}/>
             <div className="row">
-                <UserProfile sbData={sideBarData}/>
+                <UserProfile sbData={this.sideBarData}/>
             </div>
      </div>
     );

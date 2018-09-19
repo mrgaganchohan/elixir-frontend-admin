@@ -1,99 +1,99 @@
 html, body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif !important;
     height: 100% !important;
 }
 
 .admin-login-text {
-    margin-top: 40px;
-    margin-bottom: 25px;
+    margin-top: 40px !important;
+    margin-bottom: 25px !important;
 }
 
 .admin-header-text {
-    font-weight: 300;
+    font-weight: 300 !important;
 }
 
 .admin-bold {
-    font-weight: 600;
+    font-weight: 600 !important;
 }
 
 .grizz-logo-img {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 10% !important;
+    margin-right: 10% !important;
 }
 
 .login-form-radius {
-    border-radius: 20px;
+    border-radius: 20px !important;
 }
 
 .cog-radius {
-    border-radius: 20px;
+    border-radius: 20px !important;
 }
 
 .login-btn {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
 }
 
 .padding-0 {
-    padding: 0px;
+    padding: 0px !important;
 }
 
 .nav-logo-text {
-    padding-left: 10px;
+    padding-left: 10px !important;
 }
 
 .marg-top-25 {
-    margin-top: 25px;
+    margin-top: 25px !important;
 }
 
 .nav-bg-custom {
-    background-color: #ffffff;
-    box-shadow: 0px 5px 30px -7px rgba(0,0,0,0.3);
+    background-color: #ffffff !important;
+    box-shadow: 0px 5px 30px -7px rgba(0,0,0,0.3) !important;
     z-index: 200 !important;
 }
 
 .dash-option-bord {
-    border: 1px solid rgb(228, 228, 228);
+    border: 1px solid rgb(228, 228, 228) !important;
 }
 
 .sidebar {
-    position: fixed;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-image: linear-gradient(#373B44,#4286f4);
+    position: fixed !important;
+    top: 51px !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    padding: 20px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    background-image: linear-gradient(#373B44,#4286f4) !important;
 }
 
 .userside-container {
-    color: #fff;
+    color: #fff !important;
 }
 
 .user-profile-avatar {
-    width: 140px;
-    height: 140px;
-    background-color: #487eb0;
-    text-align: center;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    margin: 0 auto;
-    border: 2px solid #fff;
+    width: 140px !important;
+    height: 140px !important;
+    background-color: #487eb0 !important;
+    text-align: center !important;
+    border-radius: 50% !important;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    margin: 0 auto !important;
+    border: 2px solid #fff !important;
 }
 
 .initials {
-    position: relative;
-    top: 35px; /* 25% of parent */
-    font-size: 65px; /* 50% of parent */
-    line-height: 70px; /* 50% of parent */
-    color: #fff;
+    position: relative !important;
+    top: 35px !important; /* 25% of parent */
+    font-size: 65px !important; /* 50% of parent */
+    line-height: 70px !important; /* 50% of parent */
+    color: #fff !important;
   }
 
   .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-      background-color: #1B9CFC;
-      color: #fff;
+      background-color: #1B9CFC !important;
+      color: #fff !important;
   }
 
   .radius-item {
@@ -101,48 +101,27 @@ html, body {
   }
 
   .p-view-header-brand {
-      font-size: 25px;
-      font-weight: 100;
+      font-size: 25px !important;
+      font-weight: 100 !important;
   }
 
   .p-view-description {
-      font-weight: 100;
+      font-weight: 100 !important;
   }
 
   .p-view-star {
-      color: #fbc531;
+      color: #fbc531 !important;
   }
 
   .middle {
-    margin: 0 auto;
+    margin: 0 auto !important;
   }
 
   .text-404 {
-      color: rgb(158, 158, 158);
-      font-weight: 100;
+      color: rgb(158, 158, 158) !important;
+      font-weight: 100 !important;
   }
 
   .big-icon-color {
-      color: #40739e;
+      color: #40739e !important;
   }
-
-/* Modal */
-.modalStyle {
-    background-color: '#fff';
-    border-radius: 5px;
-    max-width: 500px;
-    min-height: 300px;
-    margin: '0 auto';
-    padding: 30;
-    z-index: 1000;
-}
-
-.backdropStyle {
-    position: 'fixed';
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: 'rgba(0,0,0,0.3)';
-    padding: 50px;
-}

@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import Content from '../Dashboard/Content';
 import SettingsButton from '../Settings/SettingsButton';
 
-import "../../assets/css/custom.css";
 import Dashboard from '../Dashboard/Dashboard';
 
 class AddProduct extends Component {

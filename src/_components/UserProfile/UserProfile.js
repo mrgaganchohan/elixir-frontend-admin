@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../../assets/css/custom.css';
 
 class UserProfile extends Component {
 
@@ -12,7 +11,7 @@ class UserProfile extends Component {
 
         return (
             <nav className="col-sm-4 col-md-3 col-lg-2 hidden-xs-down sidebar">
-            <div className="row userside-container">
+            <div className="row userside-container test1111">
                 <div className="col-12 text-center">
                     <div className="user-profile-avatar">
                         <span className="initials">{initials}</span>

@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import '../../assets/bootstrap/css/bootstrap.min.css';
-
 import NavLogo from '../../assets/images/grizz-nav.png';
-import '../../assets/css/custom.css';
+
 
 class Navbar extends Component {
 
     render() {
         return (
-         <div>
-
+           <div>
                 <nav className="navbar navbar-expand-lg navbar-light nav-bg-custom">
                 <div className="navbar-brand" href="">
                     <img src={NavLogo} width="30" height="30" className="d-inline-block align-top" alt="" />
@@ -26,7 +24,8 @@ class Navbar extends Component {
                     </ul>
                 </div>
             </nav>
-         </div>
+           </div>
+
         );
       }
 }

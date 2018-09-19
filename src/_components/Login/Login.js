@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import '../../assets/css/custom.css';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import GrizzLogo from '../../assets/images/grizz-logo.png';
-import '../../assets/css/custom.css';
-
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAdminInfo, authenticateUser } from '../../actions/adminActions';
 import { Redirect } from 'react-router-dom';
+
 class Login extends Component {
 
     constructor(props) {
@@ -42,17 +42,16 @@ class Login extends Component {
         </div>
         <div className="d-flex justify-content-center align-items-center container">
             <form>
-            <div className="form-group">
-                <label className="float-left">Email address</label>
-                <input type="email" className="form-control login-form-radius" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="user@example.com" />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div className="form-group">
-                <label className="float-left">Password</label>
-                <input type="password" className="form-control login-form-radius" id="exampleInputPassword1" placeholder="Password" />
-            </div>
-            <button className="btn btn-primary login-form-radius login-btn" onClick={this.handleLogin}>Login</button>
-            
+                <div className="form-group">
+                    <label className="float-left">Email address</label>
+                    <input type="email" className="form-control login-form-radius" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="user@example.com" />
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div className="form-group">
+                    <label className="float-left">Password</label>
+                    <input type="password" className="form-control login-form-radius" id="exampleInputPassword1" placeholder="Password" />
+                </div>
+                <button className="btn btn-primary login-form-radius login-btn" onClick={this.handleLogin}>Login</button>
             </form>
       </div>
      </div>

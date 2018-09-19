@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import '../../assets/css/custom.css';
-
 import {Link} from 'react-router-dom';
-
 
 class DashOptions extends Component {
 

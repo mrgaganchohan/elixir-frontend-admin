@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
 import Content from '../Dashboard/Content';
 import ProductForm from './ProductForm';
 import Dashboard from '../Dashboard/Dashboard';
+import '../../assets/css/custom.css';
 
 class Products extends Component {
     render() {

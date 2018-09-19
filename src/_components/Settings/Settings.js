@@ -76,7 +76,6 @@ class Settings extends Component {
 
     submitChangeDetails() {
         //implement submit details change 
-        console.log(this.props.adminDetails.email);
         let updatedData = {
             name: this.state.adminData.name,
             contactNum: this.state.adminData.contactNum,

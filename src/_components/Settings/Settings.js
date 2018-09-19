@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { getAdminInfo, updateAdminInfo } from '../../actions/adminActions';
 
 import '../../assets/css/custom.css';
+import Dashboard from '../Dashboard/Dashboard';
 
 
 class Settings extends Component {
@@ -122,7 +123,9 @@ class Settings extends Component {
         
 
         return (
-            <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <div>
+                <Dashboard />
+                <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
                <h1 className="text-left mt-2"><span className="fa fa-cog pr-2 big-icon-color"></span>Profile Settings</h1>
                <hr />
                 <div className="container">
@@ -178,6 +181,7 @@ class Settings extends Component {
                     </div>
                 </div>
             </main>
+            </div>
         );
     }
 }

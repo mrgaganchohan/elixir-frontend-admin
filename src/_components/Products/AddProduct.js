@@ -4,12 +4,14 @@ import Content from '../Dashboard/Content';
 import SettingsButton from '../Settings/SettingsButton';
 
 import "../../assets/css/custom.css";
+import Dashboard from '../Dashboard/Dashboard';
 
 class AddProduct extends Component {
 
     render() {
         return(
             <div>
+                <Dashboard />
                 <Content page="PRODUCTS" />
                 <SettingsButton />
                 <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
@@ -40,8 +42,8 @@ class AddProduct extends Component {
                             <input type="text" className="form-control" placeholder="Product Description"/>
                         </div>
                         <div className="col-lg-12 col-md-12 form-group w-75 input-group">
-                        <div class="input-group-prepend">
-                           <div class="input-group-text">$</div>
+                        <div className="input-group-prepend">
+                           <div className="input-group-text">$</div>
                         </div>
                             <input type="text" className="form-control" placeholder="Price"/>
                         </div>

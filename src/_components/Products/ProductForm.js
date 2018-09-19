@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import "../../assets/css/custom.css";
 import {Link} from 'react-router-dom';
 import ProductsTable from './ProductsTable';
-
 import SettingsButton from '../Settings/SettingsButton';
 
-
 class ProductForm extends Component {
-
     render() {
         return(
             <div>
@@ -46,7 +43,6 @@ class ProductForm extends Component {
             </div>
         )
     }
-
 }
 
 export default ProductForm;

@@ -25,3 +25,11 @@ export const updateAdminInfo = (email, adminData) => dispatch => {
         payload: updatedData.data
     }));
 }
+
+//this function is for security testing locally 
+export const authenticateUser = () => dispatch => {
+    dispatch({
+        type: "AUTH",
+        payload: true
+    })
+}

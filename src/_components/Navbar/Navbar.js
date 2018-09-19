@@ -8,7 +8,9 @@ class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light nav-bg-custom">
+         <div>
+
+                <nav className="navbar navbar-expand-lg navbar-light nav-bg-custom">
                 <div className="navbar-brand" href="">
                     <img src={NavLogo} width="30" height="30" className="d-inline-block align-top" alt="" />
                     <span className="nav-logo-text"><strong>Grizzly</strong> Store | <strong>Admin</strong> Portal</span>
@@ -24,6 +26,7 @@ class Navbar extends Component {
                     </ul>
                 </div>
             </nav>
+         </div>
         );
       }
 }

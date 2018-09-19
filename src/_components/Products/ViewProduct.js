@@ -4,6 +4,7 @@ import Content from '../Dashboard/Content';
 import SettingsButton from '../Settings/SettingsButton';
 
 import "../../assets/css/custom.css";
+import Dashboard from '../Dashboard/Dashboard';
 
 
 
@@ -12,6 +13,7 @@ class ViewProduct extends Component {
     render() {
         return(
             <div>
+                <Dashboard />
                 <Content page="PRODUCTS"/>
                 <SettingsButton />
 

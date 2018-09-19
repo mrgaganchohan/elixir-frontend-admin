@@ -11,8 +11,7 @@ export default (state = initialState, action) => {
             console.log("ADMIN DATA BEING HIT REDUCER");
             return {
                 ...state,
-                adminDetails: action.payload,
-                isAuthenticated: true
+                adminDetails: action.payload
             }
         case ADMIN_UPDATE_INFO:
             console.log("update admin user information");
@@ -20,6 +19,13 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 adminDetails: action.payload
+            }
+        case "AUTH":
+            console.log("update admin user information");
+            console.log(action.payload);
+            return {
+                ...state,
+                isAuthenticated: action.payload
             }
         default:
             return "";

@@ -2,14 +2,32 @@ import React, {Component} from 'react';
 
 class UserProfile extends Component {
 
+    constructor(props) {
+        super(props);
+
+    }
+
+    createInitials(name) {
+        let finalName;
+        let intitials;
+        let inputName = this.props.sbData.name.trim().split(" ");
+        let finalArray = inputName.filter(x => x !== "");
+
+        finalName = finalArray.length > 1 ? 
+                finalArray[0] + " " + finalArray[finalArray.length - 1] :  
+                finalName = finalArray[0];
+
+        intitials = finalName.split(/\s/).reduce((response,word)=> response+=word.slice(0,1).toUpperCase(),'')
+
+        return intitials;
+    }
+
+
     render() {
         let initials = ""; 
 
         if(this.props.sbData.name) {
-            let inputName = this.props.sbData.name.split(" ");
-            console.log(inputName)
-            let finalName = inputName[0] + " " + inputName[inputName.length -1];
-            initials = finalName.split(/\s/).reduce((response,word)=> response+=word.slice(0,1).toUpperCase(),'')
+            initials = this.createInitials(this.props.sbData.name);
         }
 
         return (

@@ -125,3 +125,11 @@ html, body {
   .big-icon-color {
       color: #40739e !important;
   }
+
+  .invalid-input {
+      border: 1px solid #e74c3c !important;
+  }
+
+  .input-error-text {
+      color: #e74c3c !important;
+  }

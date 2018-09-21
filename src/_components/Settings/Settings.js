@@ -15,7 +15,20 @@ class Settings extends Component {
         super(props);
 
         this.state = {
-            disabledModify: true
+            disabledModify: true,
+            formValidity: {
+                nameValid: true,
+                desValid: true,
+                mobValid: true,
+                officeValid: true
+            },
+            formValid: false,
+            formErrors: {
+                nameInput: "",
+                desInput: "",
+                mobInput: "",
+                officeInput: ""
+            }
         }
         
         //binding methods
@@ -36,17 +49,107 @@ class Settings extends Component {
 
     handleChangeName(e){
         //implement handle change
+       e.preventDefault();
+       console.log(e.target.value)
+       let pattern = new RegExp("^[a-zA-Z ]*$");
+       let isValid = pattern.test(e.target.value);
+       let emptyString;
+
+       if(e.target.value === "" || e.target.value === " ") {
+            emptyString = true;
+       }
+       else {
+           emptyString = false;
+       }
+       console.log("emptyString = ", emptyString)
+
+       if(isValid && !emptyString) {
+           this.setState({
+               formValidity: {
+                   ...this.state.formValidity,
+                   nameValid: true
+               },
+               formErrors: {
+                   ...this.state.formErrors,
+                   nameInput: ""
+               }
+           }, () => {
+            this.checkValidity();
+           })
+
+       }
+       else {
+            this.setState({
+                formValidity: {
+                    ...this.state.formValidity,
+                    nameValid: false
+                },
+                formValid: false,
+                formErrors: {
+                    ...this.state.formErrors,
+                    nameInput: "invalid-input"
+                }
+            }, () => {
+                this.checkValidity();
+            });
+       }
+
        this.setState({
             adminData: {
                 ...this.state.adminData,
                 name: e.target.value
             }
        })
+      
     }
 
     handleChangeNumber(e){
         //implement handle change
-       this.setState({
+        e.preventDefault();
+        console.log(e.target.value)
+        let pattern = new RegExp("^[+]?[0-9]{8,15}$");
+        let isValid = pattern.test(e.target.value);
+        let emptyString;
+ 
+        if(e.target.value === "" || e.target.value === " ") {
+             emptyString = true;
+        }
+        else {
+            emptyString = false;
+        }
+ 
+        if(isValid && !emptyString) {
+            this.setState({
+                formValidity: {
+                    ...this.state.formValidity,
+                    mobValid: true
+                },
+                formErrors: {
+                    ...this.state.formErrors,
+                    mobInput: ""
+                }
+            }, () => {
+             this.checkValidity();
+            })
+ 
+        }
+        else {
+             this.setState({
+                formValidity: {
+                    ...this.state.formValidity,
+                    mobValid: false
+                },
+                formValid: false,
+                formErrors: {
+                     ...this.state.formErrors,
+                     mobInput: "invalid-input"
+                 }
+             }, () => {
+                 this.checkValidity();
+             });
+        }
+
+        this.setState({
             adminData: {
                 ...this.state.adminData,
                 contactNum: e.target.value
@@ -56,6 +159,50 @@ class Settings extends Component {
 
     handleChangeDesignation(e) {
         //implement handle change
+
+        e.preventDefault();
+        console.log(e.target.value)
+        let pattern = new RegExp("^[a-zA-Z ]*$");
+        let isValid = pattern.test(e.target.value);
+        let emptyString;
+ 
+        if(e.target.value === "" || e.target.value === " ") {
+             emptyString = true;
+        }
+        else {
+            emptyString = false;
+        }
+ 
+        if(isValid && !emptyString) {
+            this.setState({
+                formValidity: {
+                    ...this.state.formValidity,
+                    desValid: true
+                },
+                formErrors: {
+                    ...this.state.formErrors,
+                    desInput: ""
+                }
+            }, () => {
+             this.checkValidity();
+            })
+        }
+        else {
+             this.setState({
+                formValidity: {
+                    ...this.state.formValidity,
+                    desValid: false
+                },
+                formValid: false,
+                formErrors: {
+                     ...this.state.formErrors,
+                     desInput: "invalid-input"
+                 }
+             }, () => {
+                 this.checkValidity();
+             });
+        }
+
         this.setState({
             adminData: {
                 ...this.state.adminData,
@@ -66,6 +213,50 @@ class Settings extends Component {
     
     handleChangeOffice(e) {
         //implement handle change
+
+        e.preventDefault();
+        console.log(e.target.value)
+        let pattern = new RegExp("^[a-zA-Z., ]*$");
+        let isValid = pattern.test(e.target.value);
+        let emptyString;
+ 
+        if(e.target.value === "" || e.target.value === " ") {
+             emptyString = true;
+        }
+        else {
+            emptyString = false;
+        }
+ 
+        if(isValid && !emptyString) {
+            this.setState({
+                formValidity: {
+                    ...this.state.formValidity,
+                    officeValid: true
+                },
+                formErrors: {
+                    ...this.state.formErrors,
+                    officeInput: ""
+                }
+            }, () => {
+             this.checkValidity();
+            })
+ 
+        }
+        else {
+             this.setState({
+                formValidity: {
+                    ...this.state.formValidity,
+                    officeValid: false
+                },
+                formValid: false,
+                formErrors: {
+                     ...this.state.formErrors,
+                     officeInput: "invalid-input"
+                 }
+             }, () => {
+                 this.checkValidity();
+             });
+        }
         this.setState({
             adminData: {
                 ...this.state.adminData,
@@ -96,9 +287,46 @@ class Settings extends Component {
 
     onCancel() {
         this.setState({
-             disabledModify: true,
-             adminData : this.props.adminDetails 
+            disabledModify: true,
+            adminData : this.props.adminDetails,
+            formValidity: {
+                ...this.state.formValidity,
+                nameValid: true,
+                desValid: true,
+                mobValid: true,
+                officeValid: true
+            },
+            formErrors: {
+                ...this.state.formErrors,
+                nameInput: "",
+                desInput: "",
+                mobInput: "",
+                officeInput: ""
+            }
         })
+    }
+
+    checkValidity() {
+        let isFormValid;
+        for (let key in this.state.formValidity) {
+            if (this.state.formValidity.hasOwnProperty(key)) {
+                console.log(key + " -> " + this.state.formValidity[key]);
+                if(this.state.formValidity[key]) {
+                    isFormValid = true;
+                }
+                else {
+                    isFormValid = false;
+                    break;
+                }
+            }
+        }
+
+        if(isFormValid) {
+            this.setState({
+                formValid: true
+            })
+        }
+        console.log("Checking validity... ", this.state.formValid);
     }
 
     render() {
@@ -109,7 +337,7 @@ class Settings extends Component {
                             </div>
 
         let editable =  <div>
-                            <button className="btn btn-success cog-radius float-right ml-3" onClick={this.submitChangeDetails}>Confirm Changes</button>
+                            <button className="btn btn-success cog-radius float-right ml-3" disabled={!this.state.formValid} onClick={this.submitChangeDetails}>Confirm Changes</button>
                             <button className="btn btn-light cog-radius float-right" onClick={this.onCancel}>Cancel</button>
                         </div>
 
@@ -119,26 +347,49 @@ class Settings extends Component {
 
         let emailLabelText = this.state.disabledModify ? null : emailText;
 
-        
+        let nameError =  !this.state.formValidity.nameValid ? 
+                            <small id="emailHelp" className="mb-0 mt-0 form-text input-error-text float-left">
+                            Invalid input
+                            </small> :
+                            null;
+
+        let desError =  !this.state.formValidity.desValid ? 
+                            <small id="emailHelp" className="mb-0 mt-0 form-text input-error-text float-left">
+                            Invalid input
+                            </small> :
+                            null;
+
+        let mobError =  !this.state.formValidity.mobValid ? 
+                            <small id="emailHelp" className="mb-0 mt-0 form-text input-error-text float-left">
+                            Invalid input
+                            </small> :
+                            null;
+
+        let officeError =  !this.state.formValidity.officeValid ? 
+                            <small id="emailHelp" className="mb-0 mt-0 form-text input-error-text float-left">
+                            Invalid input
+                            </small> :
+                            null;
 
         return (
             <div>
                 <Dashboard />
-                <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <main className="col-sm-9 offset-sm-3 col-md-9 offset-md-2 pt-3">
                <h1 className="text-left mt-2"><span className="fa fa-cog pr-2 big-icon-color"></span>Profile Settings</h1>
                <hr />
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 col-md-10 offset-lg-0 offset-md-1">
                             <div className="form-group">
                                <label className="float-left mb-0">Name</label>
-                               <input type="text" className="form-control" disabled={this.state.disabledModify} 
+                               <input type="text" className={`form-control ${this.state.formErrors.nameInput}`} disabled={this.state.disabledModify} 
                                value={this.state.adminData.name} onChange={this.handleChangeName}/>
+                               {nameError}
                             </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 col-md-10 offset-lg-0 offset-md-1">
                                 <div className="form-group">
                                     <label className="float-left mb-0">Email</label>
                                     <input type="text" className="form-control" disabled={true} value={this.state.adminData.email}/>
@@ -147,34 +398,37 @@ class Settings extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 col-md-10 offset-lg-0 offset-md-1">
                                 <div className="form-group">
                                     <label className="float-left mb-0">Designation</label>
-                                    <input type="text" className="form-control" disabled={this.state.disabledModify}
+                                    <input type="text" className={`form-control ${this.state.formErrors.desInput}`} disabled={this.state.disabledModify}
                                     value={this.state.adminData.designation} onChange={this.handleChangeDesignation}/>
+                                    {desError}
                                 </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 col-md-10 offset-lg-0 offset-md-1">
                                 <div className="form-group">
                                     <label className="float-left mb-0">Mobile</label>
-                                    <input type="text" className="form-control" disabled={this.state.disabledModify}
+                                    <input type="text" className={`form-control ${this.state.formErrors.mobInput}`} disabled={this.state.disabledModify}
                                     value={this.state.adminData.contactNum} onChange={this.handleChangeNumber}/>
+                                    {mobError}
                                 </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 col-md-10 offset-lg-0 offset-md-1">
                                 <div className="form-group">
                                     <label className="float-left mb-0">Office</label>
-                                    <input type="text" className="form-control" id="inputPassword2" disabled={this.state.disabledModify}
+                                    <input type="text" className={`form-control ${this.state.formErrors.officeInput}`} id="inputPassword2" disabled={this.state.disabledModify}
                                     value={this.state.adminData.office} onChange={this.handleChangeOffice}/>
+                                    {officeError}
                                 </div>
                         </div>
                     </div>
                     <div className="row mt-5">
-                        <div className="col-lg-12">
+                        <div className="col-lg-10 col-md-9 col-sm-10">
                             {userActionButtons}
                         </div>
                     </div>

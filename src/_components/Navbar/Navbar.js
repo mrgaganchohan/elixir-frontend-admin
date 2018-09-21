@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../../assets/bootstrap/css/bootstrap.min.css';
 import NavLogo from '../../assets/images/grizz-nav.png';
+import {Link} from 'react-router-dom';
 
 
 class Navbar extends Component {
@@ -9,10 +10,10 @@ class Navbar extends Component {
         return (
            <div>
                 <nav className="navbar navbar-expand-lg navbar-light nav-bg-custom">
-                <div className="navbar-brand" href="">
+                <Link className="navbar-brand" href="" to="/">
                     <img src={NavLogo} width="30" height="30" className="d-inline-block align-top" alt="" />
                     <span className="nav-logo-text"><strong>Grizzly</strong> Store | <strong>Admin</strong> Portal</span>
-                </div>
+                </Link>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="nav navbar-nav ml-auto">
                         <li className="nav-item active pr-4">

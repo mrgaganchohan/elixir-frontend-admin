@@ -9,6 +9,10 @@ import Dashboard from '../Dashboard/Dashboard';
 
 
 class ViewProduct extends Component {
+    
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return(

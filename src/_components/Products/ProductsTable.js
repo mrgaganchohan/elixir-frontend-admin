@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
 import ProductTableRow from './ProductTableRow';
+import { getAllProducts } from '../../actions/productActions';
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class ProductsTable extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentWillMount() {
+        // let data = this.props.getAllProducts();
+        // console.log("getting all products data ", data);
+        console.log("mounted prod table", this.props.allProducts)
+    }
+
     render() {
+        let productRows;
+
+        if(this.props.allProducts) {
+            productRows = this.props.allProducts.map((data) => {
+                return <ProductTableRow key={data.id} productInfo={data}/>
+            })
+        }
+
         return(
             <table className="table table-striped mt-3">
                 <thead>
@@ -15,9 +38,7 @@ class ProductsTable extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <ProductTableRow />
-                    <ProductTableRow />
-                    <ProductTableRow />
+                    {productRows}
                 </tbody>
             </table>
 
@@ -25,4 +46,14 @@ class ProductsTable extends Component {
     }
 }
 
-export default ProductsTable;
+
+ProductsTable.propTypes = {
+    getAllProducts: PropTypes.func.isRequired,
+    allProducts: PropTypes.array
+}
+
+const mapStateToProps = state => ({
+    allProducts: state.productData.allProducts
+})
+
+export default connect(mapStateToProps, {getAllProducts})(ProductsTable);

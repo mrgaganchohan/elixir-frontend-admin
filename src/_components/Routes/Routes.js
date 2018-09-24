@@ -10,20 +10,25 @@ import PrivateRoute from './PrivateRoute';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAdminInfo } from '../../actions/adminActions';
+import store from '../../store/store';
 
 class Routes extends Component {
     componentWillMount() {
         this.props.getAdminInfo("andysek@test.com");
         console.log('routes here...')
+        console.log("Authenticated == ", this.props.isAuthenticated)
+        console.log(store.getState())
     }
+
     render() {
         console.log('routes - is authenticated: ', this.props.isAuthenticated);
+        console.log(store.getState())
         return(
             <BrowserRouter>
                 <Switch>
                     <Route path="/login" component={Login}/>
                     <PrivateRoute path="/products" component={Products} isAuthed={this.props.isAuthenticated}/>
-                    <PrivateRoute path="/product/view" component={ViewProduct} isAuthed={this.props.isAuthenticated}/>
+                    <PrivateRoute path="/product/view/:id" component={ViewProduct} isAuthed={this.props.isAuthenticated}/>
                     <PrivateRoute path="/product/add" component={AddProduct} isAuthed={this.props.isAuthenticated}/>
                     <PrivateRoute path="/settings" component={Settings} isAuthed={this.props.isAuthenticated}/>
                     <PrivateRoute exact path="/" component={Products} isAuthed={this.props.isAuthenticated}/>

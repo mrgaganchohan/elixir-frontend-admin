@@ -14,13 +14,20 @@ class Products extends Component {
 
     constructor(props) {
         super(props);
+        console.log(this.props.products)
     }
 
     componentWillMount() {
         this.props.getAllProducts();
+        
     }
 
     render() {
+
+        if(this.props.products !== undefined) {
+            console.log("here i am logging all products array", this.props.products)
+        }
+        
         return(
             <div>
                 <Dashboard />
@@ -33,7 +40,7 @@ class Products extends Component {
 
 Products.propTypes = {
     getAllProducts: PropTypes.func.isRequired,
-    allProducts: PropTypes.array
+    products: PropTypes.array
 }
 
 const mapStateToProps = state => ({

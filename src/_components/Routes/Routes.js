@@ -10,14 +10,16 @@ import PrivateRoute from './PrivateRoute';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAdminInfo } from '../../actions/adminActions';
+import { getAllProducts } from '../../actions/productActions';
 import store from '../../store/store';
 
 class Routes extends Component {
     componentWillMount() {
         this.props.getAdminInfo("andysek@test.com");
-        console.log('routes here...')
-        console.log("Authenticated == ", this.props.isAuthenticated)
-        console.log(store.getState())
+        this.props.getAllProducts();
+        // console.log('routes here...')
+        // console.log("Authenticated == ", this.props.isAuthenticated)
+        // console.log(store.getState())
     }
 
     render() {
@@ -40,6 +42,7 @@ class Routes extends Component {
 }
 
 Routes.propTypes = {
+    getAllProducts: PropTypes.func.isRequired,
     getAdminInfo: PropTypes.func.isRequired,
     adminDetails: PropTypes.object,
     isAuthenticated: PropTypes.bool
@@ -47,7 +50,8 @@ Routes.propTypes = {
 
 const mapStateToProps = state => ({
     adminDetails: state.adminData.adminDetails,
-    isAuthenticated: state.adminData.isAuthenticated
+    isAuthenticated: state.adminData.isAuthenticated,
+
 })
 
-export default connect(mapStateToProps, {getAdminInfo})(Routes);
+export default connect(mapStateToProps, {getAdminInfo, getAllProducts})(Routes);

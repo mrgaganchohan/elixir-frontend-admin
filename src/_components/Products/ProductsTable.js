@@ -14,18 +14,23 @@ class ProductsTable extends Component {
     componentWillMount() {
         // let data = this.props.getAllProducts();
         // console.log("getting all products data ", data);
-        console.log("mounted prod table", this.props.allProducts)
+        console.log("mounted prod table", this.props.products)
     }
 
     render() {
         let productRows;
 
-        if(this.props.allProducts) {
+        if(this.props.products.length > 0) {
             console.log("77777777 getting here")
-            console.log(this.props.allProducts);
-            productRows = this.props.allProducts.map((data) => {
+            console.log(this.props.products);
+
+            console.log("table rows props ", this.props.tableRows)
+            productRows = this.props.tableRows.map((data) => {
                 return <ProductTableRow key={data.product.id} productInfo={data.product}/>
             })
+
+            // let filteredItems = this.props.allProducts.filter(product => product.product.categoryName == "Books");
+            // console.log("Filtered items =====> ", filteredItems);
         }
 
         return(
@@ -51,11 +56,13 @@ class ProductsTable extends Component {
 
 ProductsTable.propTypes = {
     getAllProducts: PropTypes.func.isRequired,
-    allProducts: PropTypes.array
+    products: PropTypes.array,
+    tableRows: PropTypes.array
 }
 
 const mapStateToProps = state => ({
-    allProducts: state.productData.allProducts
+    products: state.productData.allProducts,
+    
 })
 
 export default connect(mapStateToProps, {getAllProducts})(ProductsTable);

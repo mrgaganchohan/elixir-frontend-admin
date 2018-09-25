@@ -8,7 +8,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
         case PRODUCTS_GET_ALL:
-            //console.log("product DATA BEING HIT REDUCER");
+            console.log("product DATA BEING HIT REDUCER");
             return {
                 ...state,
                 allProducts: action.payload

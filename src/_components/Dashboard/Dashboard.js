@@ -20,13 +20,13 @@ class Dashboard extends Component {
         this.props.getAdminInfo("andysek@test.com");
         this.props.getAllProducts();
         //console.log("will Mount dash", this.props.adminDetails);
-        console.log("DASHBOARD authenticatd = ", this.props.isAuthenticated)
+        //console.log("DASHBOARD authenticatd = ", this.props.isAuthenticated)
         if(this.props.adminDetails) {
             this.adminName = this.props.adminDetails.name;
             //this.sideBarData = this.props.adminDetails;
         }
 
-        console.log("HEREHERHE", this.props.products);
+        //console.log("HEREHERHE", this.props.products);
     }
 
   render() {

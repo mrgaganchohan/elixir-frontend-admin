@@ -18,6 +18,7 @@ class Products extends Component {
 
     componentWillMount() {
         this.props.getAllProducts();
+        
     }
 
     render() {

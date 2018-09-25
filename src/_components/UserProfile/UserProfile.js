@@ -7,7 +7,7 @@ class UserProfile extends Component {
 
         if(this.props.sbData.name) {
             let inputName = this.props.sbData.name.split(" ");
-            console.log(inputName)
+            //console.log(inputName)
             let finalName = inputName[0] + " " + inputName[inputName.length -1];
             initials = finalName.split(/\s/).reduce((response,word)=> response+=word.slice(0,1).toUpperCase(),'')
         }

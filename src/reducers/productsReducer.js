@@ -8,18 +8,16 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
         case PRODUCTS_GET_ALL:
-            console.log("product DATA BEING HIT REDUCER");
+            //console.log("product DATA BEING HIT REDUCER");
             return {
                 ...state,
                 allProducts: action.payload
             }
-        // case PRODUCTS_GET_PRODUCT:
-        //     console.log("update admin user information");
-        //     console.log(action.payload);
-        //     return {
-        //         ...state,
-        //         adminDetails: action.payload
-        //     }
+        case PRODUCTS_GET_PRODUCT:
+            return {
+                ...state,
+                product: action.payload
+            }
         default:
             return state;
     }

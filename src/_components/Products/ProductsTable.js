@@ -21,8 +21,10 @@ class ProductsTable extends Component {
         let productRows;
 
         if(this.props.allProducts) {
+            console.log("77777777 getting here")
+            console.log(this.props.allProducts);
             productRows = this.props.allProducts.map((data) => {
-                return <ProductTableRow key={data.id} productInfo={data}/>
+                return <ProductTableRow key={data.product.id} productInfo={data.product}/>
             })
         }
 

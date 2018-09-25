@@ -18,7 +18,6 @@ class Products extends Component {
 
     componentWillMount() {
         this.props.getAllProducts();
-        
     }
 
     render() {
@@ -31,7 +30,6 @@ class Products extends Component {
         )
     }
 }
-
 
 Products.propTypes = {
     getAllProducts: PropTypes.func.isRequired,

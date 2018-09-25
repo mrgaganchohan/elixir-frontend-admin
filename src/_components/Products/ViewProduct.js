@@ -19,13 +19,10 @@ class ViewProduct extends Component {
 
     componentWillMount() {
         const { id } = this.props.match.params;
-        console.log("compwill mount view product", id)
         this.props.getProduct(id);
-        console.log("single product data +++ ", this.props.product)
     }
 
     render() {
-
         let page = <LoadingProduct />;
 
         if(Object.getOwnPropertyNames(this.props.product).length !== 0) {
@@ -42,7 +39,6 @@ class ViewProduct extends Component {
             </div>
         );
     }
-
 }
 
 ViewProduct.propTypes = {

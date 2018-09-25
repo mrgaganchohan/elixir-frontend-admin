@@ -28,7 +28,7 @@ const ViewProductInfo = (data) => {
               </div>
               <div className="col-lg-5 col-md-6">
                   <h5 className="text-left">Product Description</h5>
-                  <p className="text-left mt-4 p-view-description">{data.data.product.description}</p>
+                  <p className="text-left mt-3 p-view-description">{data.data.product.description}</p>
               </div>
         </div>
         <div className="row">

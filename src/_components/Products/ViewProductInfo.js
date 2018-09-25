@@ -8,7 +8,7 @@ import ProductCarousel from './ProductCarousel';
 
 const ViewProductInfo = (data) => { 
 
-    let image = data > 1 ? 
+    let image = data.data.list.length === 1 ? 
     <img width="100%" height="400" alt="" src={data.data.list[0]}/> 
     : <ProductCarousel productImage={data.data.list}/>;
 

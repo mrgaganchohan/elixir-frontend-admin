@@ -143,8 +143,8 @@ html, body {
     font-weight: 700 !important;
 }
 
-tbody {
+/* tbody {
     display:block !important;
     height:450px !important;
     overflow:auto !important;
-}
+} */

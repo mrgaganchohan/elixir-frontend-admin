@@ -125,3 +125,12 @@ html, body {
   .big-icon-color {
       color: #40739e !important;
   }
+
+.pull-bottom {
+   position: absolute !important;
+   bottom: 0 !important;
+}
+
+.rrp-text {
+    font-weight: 700 !important;
+}

@@ -2,7 +2,6 @@ import React from 'react';
 import Content from '../Dashboard/Content';
 import SettingsButton from '../Settings/SettingsButton';
 import "../../assets/css/custom.css";
-import Dashboard from '../Dashboard/Dashboard';
 import {Link} from 'react-router-dom';
 import ProductCarousel from './ProductCarousel';
 
@@ -27,8 +26,12 @@ const ViewProductInfo = (data) => {
                   </div>
               </div>
               <div className="col-lg-5 col-md-6">
-                  <h5 className="text-left">Product Description</h5>
-                  <p className="text-left mt-3 p-view-description">{data.data.product.description}</p>
+                <h5 className="text-left">Product Description</h5>
+                <p className="text-left mt-3 p-view-description">{data.data.product.description}</p>
+
+                    <div className="col-12 mt-3 pl-0 pr-0 pb-0 pull-bottom">
+                      <h5 className="text-left"><span className="rrp-text">RRP</span> ${data.data.product.price}</h5>
+                    </div>
               </div>
         </div>
         <div className="row">

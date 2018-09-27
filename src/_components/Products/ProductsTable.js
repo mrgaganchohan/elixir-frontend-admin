@@ -29,18 +29,16 @@ class ProductsTable extends Component {
                 return <ProductTableRow key={data.product.id} productInfo={data.product}/>
             })
 
-            // let filteredItems = this.props.allProducts.filter(product => product.product.categoryName == "Books");
-            // console.log("Filtered items =====> ", filteredItems);
         }
 
         return(
             <table className="table table-striped mt-3">
                 <thead>
                     <tr className="d-flex">
-                        <th className="p-2 text-left col-lg-3">Name</th>
-                        <th className="p-2 col-lg-2">Brand</th>
-                        <th className="p-2 col-lg-2">Category</th>
-                        <th className="p-2 col-lg-2">Rating</th>
+                        <th className="p-2 text-left col-lg-4">Name</th>
+                        <th className="p-2 text-left col-lg-2">Brand</th>
+                        <th className="p-2 text-left col-lg-2">Category</th>
+                        <th className="p-2 col-lg-1">Rating</th>
                         <th className="p-2 col-lg-3"></th>
                     </tr>
                 </thead>

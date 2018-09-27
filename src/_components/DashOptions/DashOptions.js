@@ -6,14 +6,13 @@ class DashOptions extends Component {
 
     constructor(props) {
         super(props);
-        console.log("props dashoptions", this.props);
+        //console.log("props dashoptions", this.props);
     }
 
     render() {
         var tiles = {};
         switch(this.props.activeTab) {
             case "PRODUCTS":
-                console.log("hitting here in dashoptions")
                 tiles = {
                     products: "active",
                     vendors: "",
@@ -21,7 +20,6 @@ class DashOptions extends Component {
                 }
                 break;
             case "VENDORS":
-                console.log("hitting here in dashoptions")
                 tiles = {
                     products: "",
                     vendors: "active",

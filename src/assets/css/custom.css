@@ -133,3 +133,18 @@ html, body {
   .input-error-text {
       color: #e74c3c !important;
   }
+
+.pull-bottom {
+   position: absolute !important;
+   bottom: 0 !important;
+}
+
+.rrp-text {
+    font-weight: 700 !important;
+}
+
+tbody {
+    display:block !important;
+    height:450px !important;
+    overflow:auto !important;
+}

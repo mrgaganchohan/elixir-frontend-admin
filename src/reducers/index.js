@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import adminReducer from './adminReducer';
+import productsReducer from './productsReducer';
 
 
 const allReducers = combineReducers({
-    adminData: adminReducer
+    adminData: adminReducer,
+    productData: productsReducer
 })
 
 export default allReducers;

@@ -28,6 +28,6 @@ export default (state = initialState, action) => {
                 isAuthenticated: action.payload
             }
         default:
-            return "";
+            return state;
     }
 }

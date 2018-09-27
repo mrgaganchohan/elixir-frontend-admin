@@ -46,11 +46,9 @@ class ProductsTable extends Component {
                     {productRows}
                 </tbody>
             </table>
-
         );
     }
 }
-
 
 ProductsTable.propTypes = {
     getAllProducts: PropTypes.func.isRequired,

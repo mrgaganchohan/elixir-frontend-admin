@@ -18,6 +18,8 @@ class ProductForm extends Component {
             displayedItems: this.props.products
         }
 
+        this.originalItems = this.props.products;
+
         this.handleSearch = this.handleSearch.bind(this);
         this.resetForm = this.resetForm.bind(this);
         this.sortProducts = this.sortProducts.bind(this);
@@ -115,6 +117,9 @@ class ProductForm extends Component {
                 }, 100)
                 return;
             default:
+            this.setState({
+                displayedItems: this.originalItems
+            })
                 return;
        }
     }

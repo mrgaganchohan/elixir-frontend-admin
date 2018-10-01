@@ -3,11 +3,36 @@ import {Link} from 'react-router-dom';
 import Content from '../Dashboard/Content';
 import SettingsButton from '../Settings/SettingsButton';
 
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import {getAllCategories, getCategory} from '../../actions/categoryActions';
+
 import Dashboard from '../Dashboard/Dashboard';
 
 class AddProduct extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
+    componentWillMount() {
+        let data = this.props.getAllCategories();
+        console.log("logging categroy data", data);
+    }
+
     render() {
+
+        let allCategoriesData;
+
+        if(this.props.allCategories.length !== 0) {
+            console.log("our category has data...", this.props.allCategories);
+
+            allCategoriesData = this.props.allCategories.map((catData) => {
+                return <option>{catData.name}</option>
+            })
+        }
+
         return(
             <div>
                 <Dashboard />
@@ -31,6 +56,12 @@ class AddProduct extends Component {
                         <div className="col-lg-12 col-md-12 form-group w-50">
                             <select className="form-control">
                                 <option value="" defaultValue="">Select a Category</option>
+                                {allCategoriesData}
+                            </select>
+                        </div>
+                        <div className="col-lg-12 col-md-12 form-group w-50">
+                            <select className="form-control">
+                                <option value="" defaultValue="">Select a Subcategory</option>
                                 <option>Latops</option>
                                 <option>Latops</option>
                                 <option>Latops</option>
@@ -45,6 +76,12 @@ class AddProduct extends Component {
                            <div className="input-group-text">$</div>
                         </div>
                             <input type="text" className="form-control" placeholder="Price"/>
+                        </div>
+
+                        <div>
+                            <label for="uploadImage">Upload images</label>
+                            <input type="file" className="form-control-file btn-warning cog-radius" id="uploadImage"></input>
+                            <small id="fileHelp" className="form-text text-muted">Upload images from your computer.</small>
                         </div>
                     </div>
                </div>
@@ -61,5 +98,20 @@ class AddProduct extends Component {
     }
 
 }
+// TO DO:
+// must implement subcategory 
+AddProduct.propTypes = {
+    getAllCategories: PropTypes.func.isRequired,
+    getCategory: PropTypes.func.isRequired,
+    allCategories: PropTypes.array,
+    category: PropTypes.object
+}
 
-export default AddProduct;
+const mapStateToProps = state => ({
+    products: state.productData.allProducts,
+    allCategories: state.categoryData.allCategories,
+    category: state.categoryData.category
+    
+})
+
+export default connect(mapStateToProps, {getAllCategories, getCategory})(AddProduct);

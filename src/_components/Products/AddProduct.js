@@ -6,7 +6,8 @@ import SettingsButton from '../Settings/SettingsButton';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import {getAllCategories, getCategory} from '../../actions/categoryActions';
+import {getAllCategories, getCategory } from '../../actions/categoryActions';
+import {getAllSubCategories, getSubCategory } from '../../actions/subcategoryActions';
 
 import Dashboard from '../Dashboard/Dashboard';
 
@@ -19,7 +20,13 @@ class AddProduct extends Component {
     componentWillMount() {
         let data = this.props.getAllCategories();
         console.log("logging categroy data", data);
+        let test = this.props.getAllSubCategories();
+        console.log("SUBCAT HITHITHITHIT",test);
     }
+
+    
+
+
 
     render() {
 
@@ -79,7 +86,7 @@ class AddProduct extends Component {
                         </div>
 
                         <div>
-                            <label for="uploadImage">Upload images</label>
+                            <label>Upload images</label>
                             <input type="file" className="form-control-file btn-warning cog-radius" id="uploadImage"></input>
                             <small id="fileHelp" className="form-text text-muted">Upload images from your computer.</small>
                         </div>
@@ -99,19 +106,24 @@ class AddProduct extends Component {
 
 }
 // TO DO:
-// must implement subcategory 
+// must implement subcategory, axios post to add product to DB
 AddProduct.propTypes = {
     getAllCategories: PropTypes.func.isRequired,
     getCategory: PropTypes.func.isRequired,
+    getAllSubCategories: PropTypes.func.isRequired,
     allCategories: PropTypes.array,
-    category: PropTypes.object
+    category: PropTypes.object,
+    allSubCategories: PropTypes.array,
+    subCategory: PropTypes.object
 }
 
 const mapStateToProps = state => ({
     products: state.productData.allProducts,
     allCategories: state.categoryData.allCategories,
-    category: state.categoryData.category
+    category: state.categoryData.category,
+    allSubCategories: state.subCategoryData.allSubCategories,
+    subCategory: state.subCategoryData.subCategory
     
 })
 
-export default connect(mapStateToProps, {getAllCategories, getCategory})(AddProduct);
+export default connect(mapStateToProps, {getAllCategories, getCategory, getAllSubCategories})(AddProduct);

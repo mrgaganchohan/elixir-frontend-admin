@@ -1,22 +1,22 @@
-import {CATEGORY_GET_ALL, CATEGORY_GET_CATEGORY} from '../actions/types';
+import {SUBCATEGORY_GET_ALL, SUBCATEGORY_GET_SUBCATEGORY} from '../actions/types';
 
 const initialState = {
-    allCategories: [],
-    category: {}
+    allSubCategories: [],
+    subCategory: {}
 }
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case CATEGORY_GET_ALL:
+        case SUBCATEGORY_GET_ALL:
             // console.log("CATEGORY DATA BEING HIT REDUCER");
             return {
                 ...state,
-                allCategories: action.payload
+                allSubCategories: action.payload
             }
-        case CATEGORY_GET_CATEGORY:
+        case SUBCATEGORY_GET_SUBCATEGORY:
             return {
                 ...state,
-                category: action.payload
+                subCategory: action.payload
             }
         default:
             return state;

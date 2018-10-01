@@ -1,4 +1,4 @@
-import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT} from '../actions/types';
+import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT} from '../actions/types';
 
 const initialState = {
     allProducts: [],

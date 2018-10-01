@@ -24,7 +24,9 @@ class AddProduct extends Component {
         console.log("SUBCAT HITHITHITHIT",test);
     }
 
-    
+    handleSubCategories() {
+        
+    }
 
 
 

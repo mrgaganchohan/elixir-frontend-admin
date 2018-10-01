@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../assets/css/custom.css';
 import {Link} from 'react-router-dom';
+import StarRatingComponent from 'react-star-rating-component';
 
 
 class ProductTableRow extends Component {

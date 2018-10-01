@@ -15,7 +15,7 @@ export const getAllCategories = () => dispatch => {
 
 export const getCategory = (category) => dispatch => {
     //console.log("get category info");
-    axios.get(API_ADDRESS + MICRO_CATEGORY + `/sub-category/cat/${category}`)
+    axios.get(API_ADDRESS + MICRO_CATEGORY + `/${category}`)
     .catch(error => console.log(error.status))
     .then(categoryData => dispatch({
         type: CATEGORY_GET_CATEGORY,

@@ -1,6 +1,6 @@
 //implement admin calls to api
 import {API_ADDRESS, MICRO_PRODUCTS} from '../constants/constants';
-import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT} from '../actions/types';
+import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT} from '../actions/types';
 import axios from 'axios';
 
 export const getAllProducts = () => dispatch => {
@@ -24,3 +24,13 @@ export const getProduct = (id) => dispatch => {
         payload: product.data
     }, console.log("product in action: ", product.data)));
 }
+
+// export const addProduct = () => dispatch => {
+//     axios.post(API_ADDRESS + MICRO_PRODUCTS + `/addImage`)
+//     .catch(error => console.log(error.status))
+//     .then(res => res)
+//     .then(product => dispatch({
+//         type: PRODUCTS_ADD_PRODUCT,
+//         payload: product.data
+//     }, console.log("product posting: hithithithititithit", product.data)));
+// } 

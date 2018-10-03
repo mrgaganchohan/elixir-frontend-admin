@@ -11,7 +11,7 @@ export const getAllProducts = () => dispatch => {
     .then(products => dispatch({
         type: PRODUCTS_GET_ALL,
         payload: products.data
-    }, console.log(products.data)));
+    }));
 }
 
 export const getProduct = (id) => dispatch => {
@@ -22,7 +22,7 @@ export const getProduct = (id) => dispatch => {
     .then(product => dispatch({
         type: PRODUCTS_GET_PRODUCT,
         payload: product.data
-    }, console.log("product in action: ", product.data)));
+    } ));
 }
 
 // export const addProduct = () => dispatch => {

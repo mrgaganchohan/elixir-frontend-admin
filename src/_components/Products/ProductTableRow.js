@@ -14,6 +14,10 @@ class ProductTableRow extends Component {
         }
     }
 
+    componentWillMount() {
+        
+    }
+
     openModal = () => {
         this.setState({
             visible: true
@@ -49,7 +53,7 @@ class ProductTableRow extends Component {
             <tr className="d-flex">
                 <td className="text-left col-lg-4 pt-2 pb-1">{this.props.productInfo.name}</td>
                 <td className="col-lg-2 text-left pt-2 pb-1">{this.props.productInfo.brand}</td>
-                <td className="col-lg-2 text-left pt-2 pb-1">{this.props.productInfo.categoryName}</td>
+                <td className="col-lg-2 text-left pt-2 pb-1">{this.props.category}</td>
                 <td className="col-lg-1 pt-2 pb-1">
                 <StarRatingComponent 
                     name="rate1" 

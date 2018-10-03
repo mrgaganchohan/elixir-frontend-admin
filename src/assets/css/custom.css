@@ -166,3 +166,7 @@ html, body {
 .modalIcon {
     color: #ffc107 !important;
 }
+
+.content-margin {
+    margin-top: 55px !important;
+}

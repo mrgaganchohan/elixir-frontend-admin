@@ -32,24 +32,23 @@ class ProductTableRow extends Component {
 
     render() {
         return(
-            <div className="table-striped">
-                <Modal visible={this.state.visible} width="400" height="250" effect="fadeInDown" onClickAway={() => this.closeModal()}>
-                    <div className="container">
-                       <div className="row">
-                            <div className="col text-left" >
-                                <h2 className="text-left mb-0 modalHeader"><span className="fa fa-exclamation-circle modalIcon pr-2"></span>Warning!</h2>
-                                <hr className="mt-2 mb-3" />
-                                <p className="mb-2">Are you sure you want to delete: </p>
-                                <h6><strong>{this.props.productInfo.name}</strong></h6>
-                            </div>
-                       </div>
-                       <div className="modalOptions">
-                            <button onClick={this.closeModal} className="btn btn-danger mr-2 cog-radius">No thanks</button>
-                            <button onClick={this.closeModal} className="btn btn-success cog-radius">Yes, I'm sure</button>
-                       </div>
-                    </div>
-                </Modal>
-            
+            // <div className="table-striped">
+            //     <Modal visible={this.state.visible} width="400" height="250" effect="fadeInDown" onClickAway={() => this.closeModal()}>
+            //         <div className="container">
+            //            <div className="row">
+            //                 <div className="col text-left" >
+            //                     <h2 className="text-left mb-0 modalHeader"><span className="fa fa-exclamation-circle modalIcon pr-2"></span>Warning!</h2>
+            //                     <hr className="mt-2 mb-3" />
+            //                     <p className="mb-2">Are you sure you want to delete: </p>
+            //                     <h6><strong>{this.props.productInfo.name}</strong></h6>
+            //                 </div>
+            //            </div>
+            //            <div className="modalOptions">
+            //                 <button onClick={this.closeModal} className="btn btn-danger mr-2 cog-radius">No thanks</button>
+            //                 <button onClick={this.closeModal} className="btn btn-success cog-radius">Yes, I'm sure</button>
+            //            </div>
+            //         </div>
+            //     </Modal>
             <tr className="d-flex">
                 <td className="text-left col-lg-4 pt-2 pb-1">{this.props.productInfo.name}</td>
                 <td className="col-lg-2 text-left pt-2 pb-1">{this.props.productInfo.brand}</td>
@@ -73,7 +72,7 @@ class ProductTableRow extends Component {
                     <button onClick={this.openModal} className="btn btn-outline-danger cog-radius pl-4 pr-4 pt-1 pb-1"><span className="fa fa-trash pr-2"></span> Delete</button>
                 </td>
             </tr>
-            </div>
+        //  </div>
         );
     }
 }

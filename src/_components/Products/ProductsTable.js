@@ -12,30 +12,36 @@ class ProductsTable extends Component {
         super(props);
 
         this.loaded = false;
-        this.productRows = "";
+        this.productRows = null;
 
         this.categoriesArray = [];
     }
 
     componentWillMount() {
-        // let data = this.props.getAllProducts();
-        // console.log("getting all products data ", data);
-        //console.log("mounted prod table", this.props.products)
         this.props.getAllCategories()
+        console.log("did load new table rows ", this.props.tableRows)
+    }
+
+    shouldComponentUpdate() {
+        this.loaded = false;
+        return true;
     }
 
     render() {
         if(this.props.allCategories) {
-            console.log("all cats mate", this.props.allCategories)
+            //console.log("all cats mate", this.props.allCategories)
+            console.log("table rows ", this.props.tableRows)
+            console.log("loaded =", this.loaded)
         }
 
-        if(this.props.products.length > 0 && !this.loaded && this.props.allCategories.length > 0) {
+        if(this.props.tableRows.length > 0 && !this.loaded && this.props.allCategories.length > 0) {
             console.log("WE ARE HITTING THE RENDER LOOP!")
             console.log('props for categories', this.props.allCategories)
             
-            this.productRows = this.props.products.map((data, index) => {
-                if(index === this.props.products.length-1) {
+            this.productRows = this.props.tableRows.map((data, index) => {
+                if(index === this.props.tableRows.length-1) {
                     this.loaded = true;
+                    console.log("loaded is true? ", this.loaded)
                 }
 
                 let subCategoryNumber = data.product.subCategoryId;
@@ -48,13 +54,20 @@ class ProductsTable extends Component {
                 })
 
                 if(found[0] === undefined) {
+                    this.props.products[index].product.category = {}
+                    data.product.category = {};
+                    //console.log("getting all data for the product]", data.product);
                     return <ProductTableRow key={data.product.id} productInfo={data.product} category={"-"}/>;
                 } else {
+                    data.product.category = found;
+                    this.props.products[index].product.category = found;
+                    //console.log("getting all data for the product]", data.product);
                     return <ProductTableRow key={data.product.id} productInfo={data.product} category={found[0].name} />;
                 }
+               
             })
-
-            console.log("product rows data now is ", this.productRows);
+            //console.log("new props products ", this.props.products)
+            //console.log("product rows data now is ", this.productRows);
         }
         
         return (
@@ -81,6 +94,7 @@ ProductsTable.propTypes = {
     getAllProducts: PropTypes.func.isRequired,
     getAllCategories: PropTypes.func.isRequired,
     products: PropTypes.array,
+    tableRows: PropTypes.array,
     subCategory: PropTypes.string,
     allCategories: PropTypes.array
 }
@@ -88,7 +102,7 @@ ProductsTable.propTypes = {
 const mapStateToProps = state => ({
     products: state.productData.allProducts,
     subCategory: state.subCategoryData.subCategory,
-    allCategories: state.categoryData.allCategories,
+    allCategories: state.categoryData.allCategories
 })
 
 export default connect(mapStateToProps, {getAllProducts, getAllCategories})(ProductsTable);

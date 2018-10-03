@@ -75,6 +75,7 @@ class ProductForm extends Component {
             case "brand":
                 let sortedByBrand = this.state.displayedItems.sort((a,b) => this.sortProperty(a,b, "brand"));
                 
+                console.log("sorted by brand ", sortedByBrand)
                 this.setState({
                     sortByValue: e.target.value,
                     displayedItems: []
@@ -139,7 +140,7 @@ class ProductForm extends Component {
                      this.setState({
                          displayedItems: sortedByName
                      })
-                 }, 0)
+                 }, 100)
                  return;
              case "brand":
                  let sortedByBrand = currentList.sort((a,b) => this.sortProperty(a,b, "brand"));
@@ -152,7 +153,7 @@ class ProductForm extends Component {
                      this.setState({
                          displayedItems: sortedByBrand
                      })
-                 }, 0)
+                 }, 100)
                  return;
              case "category":
                  console.log("name has been hit!");
@@ -168,7 +169,7 @@ class ProductForm extends Component {
                      this.setState({
                          displayedItems: sortedByRatingHighToLow
                      })
-                 }, 0)
+                 }, 100)
                  return;
              case "ratingLowHigh":
                  let sortedByRatingLowToHigh = currentList.sort((a,b) => this.sortProperty(a,b, "rating"));
@@ -181,7 +182,8 @@ class ProductForm extends Component {
                      this.setState({
                          displayedItems: sortedByRatingLowToHigh
                      })
-                 }, 0)
+                     console.log("Displayed items array ", this.state.displayedItems)
+                 }, 100)
                  return;
              default:
                 this.setState({
@@ -249,7 +251,7 @@ class ProductForm extends Component {
 }
 
 ProductForm.propTypes = {
-    // getProduct: PropTypes.func.isRequired, 
+    //getProduct: PropTypes.func.isRequired, 
     getAllCategories: PropTypes.func.isRequired,
     products: PropTypes.array,
     product: PropTypes.object,

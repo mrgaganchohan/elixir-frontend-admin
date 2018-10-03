@@ -1,5 +1,5 @@
 //implement subcategory api calls
-import {API_ADDRESS, MICRO_CATEGORY} from '../constants/constants';
+import {API_ADDRESS, MICRO_SUBCATEGORY} from '../constants/constants';
 import {SUBCATEGORY_GET_ALL, SUBCATEGORY_GET_SUBCATEGORY} from '../actions/types';
 import axios from 'axios';
 

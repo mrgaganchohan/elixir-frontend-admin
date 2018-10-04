@@ -11,6 +11,7 @@ class AddProductForm extends Component{
         return(
             <div className={productform}>
                 <label>{field.label}</label>
+                {/* <name>{field.name}</name> */}
                 <input 
                     className="form-control"
                     type={field.type}
@@ -25,19 +26,21 @@ class AddProductForm extends Component{
         );
     }
 
-    onSubmit(values){
-        // this.props.createProduct(values);
-        console.log(values);
+    onSubmit(props){
+        this.props.createProduct(props);
+        console.log(props);
     }
 
     render(){
-        const { handleSubmit } = this.props;
+        const { field: { name, productId, brand, subCategoryId, rating, status, description, price, discount }, handleSubmit } = this.props;
+
+        // field: { name, productId, brand, subCategoryId, rating, status, description, price, discount },
         return(
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div className="col-lg-5 col-md-6">
                     <Field
                         label="Product Name"
-                        name="productName"
+                        name="name"
                         type="text"
                         component={this.renderField}
                     />
@@ -49,11 +52,11 @@ class AddProductForm extends Component{
                     />
                     <Field
                         label="Brand Name"
-                        name="brandName"
+                        name="brand"
                         type="text"
                         component={this.renderField}
                     />
-                    <Field
+                    {/* <Field
                         label="Category"
                         name="category"
                         type="radio"
@@ -63,6 +66,11 @@ class AddProductForm extends Component{
                     <Field
                         label="Subcategory"
                         name="subcategory"
+                        component={this.renderField}
+                    /> */}
+                    <Field
+                        label="Subcategory"
+                        name="subCategoryId"
                         component={this.renderField}
                     />
                     <Field
@@ -96,7 +104,7 @@ class AddProductForm extends Component{
                         </div>
                     <Field
                         label="Product Description"
-                        name="productDescription"
+                        name="description"
                         type="text"
                         component={this.renderField}
                     />
@@ -112,13 +120,13 @@ class AddProductForm extends Component{
                         type="text"
                         component={this.renderField}
                     />
-                    <Field
+                    {/* <Field
                         label="Upload Images"
-                        name="uploadImg"
+                        name="file"
                         type="file"
                         component={this.renderField}
-                    />
-                        
+                    /> */}
+                     
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
@@ -130,9 +138,14 @@ function validate(values){
     const errors = {};
 }
 
+
+// connect:  1st arg: mapStateToProps, 2nd arg: mapDispatchToProps
+//reduxForm: 1st arg: form config, 2nd arg: mapStateToProps, 3rd arg: mapDispatchToProps
 export default reduxForm({
     validate, 
-    form: 'AddProductForm'
+    form: 'AddProductForm',
+    field: [ 'name', 'productId', 'brand', 'subCategoryId', 'rating', 'status', 'description', 'price', 'discount'  ]
+    // list: ['list']
 }) (connect(null, { createProduct })(AddProductForm));
 // get the initial state
 // map subcategory state

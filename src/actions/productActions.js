@@ -3,6 +3,12 @@ import {API_ADDRESS, MICRO_PRODUCTS} from '../constants/constants';
 import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT} from '../actions/types';
 import axios from 'axios';
 
+export const createProduct = (values) => {
+    return(
+        console.log(values)
+    )
+}
+
 export const getAllProducts = () => dispatch => {
     console.log("attempting to get all products");
     axios.get(API_ADDRESS + MICRO_PRODUCTS + '/displayProducts')

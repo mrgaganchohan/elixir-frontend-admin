@@ -11,6 +11,8 @@ import {getAllSubCategories, getSubCategory } from '../../actions/subcategoryAct
 
 import Dashboard from '../Dashboard/Dashboard';
 
+import AddProductForm from './AddProductForm';
+
 class AddProduct extends Component {
 
     constructor(props) {
@@ -75,8 +77,17 @@ class AddProduct extends Component {
                         </div>
                     </div>
                     <div className="col-lg-5 col-md-6">
-                        <div className="col-lg-12 col-md-12 form-group w-75">
+                        {/* <div className="col-lg-12 col-md-12 form-group w-75">
                             <input type="text" className="form-control" onChange={this.handleProductName} placeholder="Enter Product Name"/>
+                        </div>
+                        <div className="col-lg-12 col-md-12 form-group w-75">
+                            <input type="text" className="form-control" placeholder="Enter Product ID"/>
+                        </div>
+                        <div className="col-lg-12 col-md-12 form-group w-75">
+                            <input type="text" className="form-control" placeholder="Enter Brand Name"/>
+                        </div>
+                        <div className="col-lg-12 col-md-12 form-group w-75">
+                            <input type="text" className="form-control" placeholder="Enter Product ID"/>
                         </div>
                         <div className="col-lg-12 col-md-12 form-group w-50">
                             <select className="form-control" onChange={this.handleSubCategories}>
@@ -104,7 +115,7 @@ class AddProduct extends Component {
                             <label>Upload images</label>
                             <input type="file" className="form-control-file btn-warning cog-radius" id="uploadImage"></input>
                             <small id="fileHelp" className="form-text text-muted">Upload images from your computer.</small>
-                        </div>
+                        </div> */}
                     </div>
                </div>
                <div className="row">
@@ -113,7 +124,7 @@ class AddProduct extends Component {
                         <Link className="btn btn-light cog-radius float-right mr-3" to="/products">Cancel</Link>
                     </div>
                </div>
-
+               <AddProductForm />
                 </main>
             </div>
         )

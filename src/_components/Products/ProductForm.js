@@ -6,6 +6,7 @@ import SettingsButton from '../Settings/SettingsButton';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {getAllProducts} from '../../actions/productActions';
+import {getAllCategories} from '../../actions/categoryActions';
 
 class ProductForm extends Component {
 
@@ -26,7 +27,7 @@ class ProductForm extends Component {
     }
 
     componentWillMount() {
-        //this.props.getAllProducts();
+        this.props.getAllCategories();
     }
 
     handleSearch = (e) => {
@@ -74,6 +75,7 @@ class ProductForm extends Component {
             case "brand":
                 let sortedByBrand = this.state.displayedItems.sort((a,b) => this.sortProperty(a,b, "brand"));
                 
+                console.log("sorted by brand ", sortedByBrand)
                 this.setState({
                     sortByValue: e.target.value,
                     displayedItems: []
@@ -138,7 +140,7 @@ class ProductForm extends Component {
                      this.setState({
                          displayedItems: sortedByName
                      })
-                 }, 0)
+                 }, 100)
                  return;
              case "brand":
                  let sortedByBrand = currentList.sort((a,b) => this.sortProperty(a,b, "brand"));
@@ -151,7 +153,7 @@ class ProductForm extends Component {
                      this.setState({
                          displayedItems: sortedByBrand
                      })
-                 }, 0)
+                 }, 100)
                  return;
              case "category":
                  console.log("name has been hit!");
@@ -167,7 +169,7 @@ class ProductForm extends Component {
                      this.setState({
                          displayedItems: sortedByRatingHighToLow
                      })
-                 }, 0)
+                 }, 100)
                  return;
              case "ratingLowHigh":
                  let sortedByRatingLowToHigh = currentList.sort((a,b) => this.sortProperty(a,b, "rating"));
@@ -180,7 +182,8 @@ class ProductForm extends Component {
                      this.setState({
                          displayedItems: sortedByRatingLowToHigh
                      })
-                 }, 0)
+                     console.log("Displayed items array ", this.state.displayedItems)
+                 }, 100)
                  return;
              default:
                 this.setState({
@@ -199,6 +202,15 @@ class ProductForm extends Component {
    }
 
     render() {
+        
+        let categories;
+
+        if(this.props.allCategories.length !== 0){
+            categories = this.props.allCategories.map((categoryType, index) => {
+                return <option key={index}>{categoryType.name}</option>;
+            });
+        }
+
         return(
             <div>
                 <SettingsButton />
@@ -211,10 +223,7 @@ class ProductForm extends Component {
                     <div className="col-lg-2">
                          <select className="form-control">
                             <option value="" defaultValue="">Filter by Category</option>
-                            <option>Latops</option>
-                            <option>Latops</option>
-                            <option>Latops</option>
-                            <option>Latops</option>
+                            {categories}
                          </select>
                     </div>
                     <div className="col-lg-2">
@@ -242,14 +251,17 @@ class ProductForm extends Component {
 }
 
 ProductForm.propTypes = {
-    getProduct: PropTypes.func.isRequired,
+    //getProduct: PropTypes.func.isRequired, 
+    getAllCategories: PropTypes.func.isRequired,
     products: PropTypes.array,
-    product: PropTypes.object
+    product: PropTypes.object,
+    allCategories: PropTypes.array
 }
 
 const mapStateToProps = state => ({
     products: state.productData.allProducts,
-    product: state.productData.product
+    product: state.productData.product,
+    allCategories: state.categoryData.allCategories
 })
 
-export default connect(mapStateToProps, {getAllProducts})(ProductForm);
+export default connect(mapStateToProps, {getAllProducts, getAllCategories})(ProductForm);

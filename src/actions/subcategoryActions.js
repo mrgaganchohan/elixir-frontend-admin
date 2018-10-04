@@ -4,21 +4,24 @@ import {SUBCATEGORY_GET_ALL, SUBCATEGORY_GET_SUBCATEGORY} from '../actions/types
 import axios from 'axios';
 
 export const getAllSubCategories = () => dispatch => {
-    console.log("attempting to get all subcategories");
+   // console.log("attempting to get all subcategories");
     axios.get(API_ADDRESS + MICRO_SUBCATEGORY + '/all')
     .catch(error => console.log(error.status))
-    .then(subcategory => dispatch({
+    .then(subcategoryData => dispatch({
+        
         type: SUBCATEGORY_GET_ALL,
-        payload: subcategory.data
-    }, console.log("HITTING SUBCATEGORIESSSS",subcategory.data)));
+        payload: subcategoryData.data
+    }, console.log("HITTING SUBCATEGORIESSSS",subcategoryData)));
 }
 
 export const getSubCategory = (subcategory) => dispatch => {
-    console.log("get subcategory info");
+    //console.log("get subcategory info");
     axios.get(API_ADDRESS + MICRO_SUBCATEGORY + `/${subcategory}`)
     .catch(error => console.log(error.status))
-    .then(subcategoryData => dispatch({
-        type: SUBCATEGORY_GET_SUBCATEGORY,
-        payload: subcategoryData.data
-    }));
+    .then(subcategoryData => {
+        dispatch({
+            type: SUBCATEGORY_GET_SUBCATEGORY,
+            payload: subcategoryData.data
+        })
+    });
 }

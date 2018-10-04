@@ -374,7 +374,7 @@ class Settings extends Component {
         return (
             <div>
                 <Dashboard />
-                <main className="col-sm-9 offset-sm-3 col-md-9 offset-md-2 pt-3">
+                <main className="col-sm-9 offset-sm-3 col-md-9 offset-md-2 pt-3 content-margin">
                <h1 className="text-left mt-2"><span className="fa fa-cog pr-2 big-icon-color"></span>Profile Settings</h1>
                <hr />
                 <div className="container">

@@ -15,17 +15,27 @@ class AddProduct extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            product: "",
+        };
     }
 
     componentWillMount() {
         let data = this.props.getAllCategories();
         console.log("logging categroy data", data);
-        let test = this.props.getAllSubCategories();
-        console.log("SUBCAT HITHITHITHIT",test);
+        // let test = this.props.getAllSubCategories();
+        // console.log("SUBCAT HITHITHITHIT",test);
     }
 
-    handleSubCategories() {
+    handleSubCategories = (e) => {
+        console.log(e.target.value,'Handle Sub clicked')
+        this.props.getAllSubCategories(e.target.value)  
         
+    }
+
+    handleProductName = (e) => {
+        console.log(e.target.value,'product change')
+        this.setState({product: e.target.value})
     }
 
 
@@ -33,17 +43,23 @@ class AddProduct extends Component {
     render() {
 
         let allCategoriesData;
+        let allSubCategoriesData;
 
         if(this.props.allCategories.length !== 0) {
             console.log("our category has data...", this.props.allCategories);
 
             allCategoriesData = this.props.allCategories.map((catData) => {
-                return <option>{catData.name}</option>
+                return <option value={catData.name}>{catData.name}</option>
+            })
+
+            allSubCategoriesData = this.props.allSubCategories.map((subs) => {
+                return <option value={subs.name}>{subs.name}</option>
             })
         }
 
         return(
             <div>
+                
                 <Dashboard />
                 <Content page="PRODUCTS" />
                 <SettingsButton />
@@ -60,21 +76,18 @@ class AddProduct extends Component {
                     </div>
                     <div className="col-lg-5 col-md-6">
                         <div className="col-lg-12 col-md-12 form-group w-75">
-                            <input type="text" className="form-control" placeholder="Enter Product Name"/>
+                            <input type="text" className="form-control" onChange={this.handleProductName} placeholder="Enter Product Name"/>
                         </div>
                         <div className="col-lg-12 col-md-12 form-group w-50">
-                            <select className="form-control">
+                            <select className="form-control" onChange={this.handleSubCategories}>
                                 <option value="" defaultValue="">Select a Category</option>
                                 {allCategoriesData}
                             </select>
                         </div>
                         <div className="col-lg-12 col-md-12 form-group w-50">
                             <select className="form-control">
-                                <option value="" defaultValue="">Select a Subcategory</option>
-                                <option>Latops</option>
-                                <option>Latops</option>
-                                <option>Latops</option>
-                                <option>Latops</option>
+                                <option value="" defaultValue="" >Select a Subcategory</option>
+                                {allSubCategoriesData}
                             </select>
                         </div>
                         <div className="col-lg-12 col-md-12 form-group w-75">

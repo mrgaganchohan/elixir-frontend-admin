@@ -267,8 +267,10 @@ class Settings extends Component {
 
     submitChangeDetails() {
         //implement submit details change 
+        //remove whitespace at end of string
+        let name = this.state.adminData.name.trim();
         let updatedData = {
-            name: this.state.adminData.name,
+            name: name,
             contactNum: this.state.adminData.contactNum,
             designation: this.state.adminData.designation,
             office: this.state.adminData.office

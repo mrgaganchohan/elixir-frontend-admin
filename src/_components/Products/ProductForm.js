@@ -337,7 +337,6 @@ class ProductForm extends Component {
 }
 
 ProductForm.propTypes = {
-    //getProduct: PropTypes.func.isRequired, 
     getAllCategories: PropTypes.func.isRequired,
     products: PropTypes.array,
     product: PropTypes.object,

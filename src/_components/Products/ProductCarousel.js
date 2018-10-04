@@ -4,9 +4,9 @@ import {Carousel} from 'react-responsive-carousel';
 
 const ProductCarousel = (productImages) => {
   
-  let images = productImages.productImage.map((image) => {
+  let images = productImages.productImage.map((image, index) => {
     return(
-      <div>
+      <div key={index}>
         <img src={image} width="100%" height="400"/>
       </div>
     )

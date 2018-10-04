@@ -11,7 +11,9 @@ const ViewProductInfo = (data) => {
 
     let image = data.data.list.length === 1 ? 
     <img width="100%" height="400" alt="" src={data.data.list[0]}/> 
-    : <ProductCarousel productImage={data.data.list}/>;
+    : <ProductCarousel key={data.data.product.id} productImage={data.data.list}/>;
+
+    console.log("DTA VIEW PRODUCT", data)
 
     return (
       <div>

@@ -17,7 +17,7 @@ class UserProfile extends Component {
                 finalArray[0] + " " + finalArray[finalArray.length - 1] :  
                 finalName = finalArray[0];
 
-        intitials = finalName.split(/\s/).reduce((response,word)=> response+=word.slice(0,1).toUpperCase(),'')
+        intitials = finalName.trim().split(/\s/).reduce((response,word)=> response+=word.slice(0,1).toUpperCase(),'')
 
         return intitials;
     }

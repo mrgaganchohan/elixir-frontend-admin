@@ -17,9 +17,9 @@ class AddProduct extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            product: "",
-        };
+        // this.state = {
+        //     product: "",
+        // };
     }
 
     componentWillMount() {

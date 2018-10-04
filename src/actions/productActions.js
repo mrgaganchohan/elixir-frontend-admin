@@ -3,10 +3,15 @@ import {API_ADDRESS, MICRO_PRODUCTS} from '../constants/constants';
 import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT} from '../actions/types';
 import axios from 'axios';
 
-export const createProduct = (values) => {
-    return(
-        console.log(values)
-    )
+export function createProduct(props) {
+    
+    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/addImage`, props);
+    console.log(req);
+    return{
+        // console.log(values)
+        type: PRODUCTS_ADD_PRODUCT,
+        payload: req
+    }
 }
 
 export const getAllProducts = () => dispatch => {
@@ -31,7 +36,7 @@ export const getProduct = (id) => dispatch => {
     } ));
 }
 
-// export const addProduct = () => dispatch => {
+// export const createProduct = (values) => dispatch => {
 //     axios.post(API_ADDRESS + MICRO_PRODUCTS + `/addImage`)
 //     .catch(error => console.log(error.status))
 //     .then(res => res)
@@ -40,3 +45,4 @@ export const getProduct = (id) => dispatch => {
 //         payload: product.data
 //     }, console.log("product posting: hithithithititithit", product.data)));
 // } 
+

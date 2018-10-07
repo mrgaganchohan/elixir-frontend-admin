@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createProduct } from '../../actions/productActions';
+import {getAllCategories, getCategory } from '../../actions/categoryActions';
+import {getAllSubCategories, getSubCategory } from '../../actions/subcategoryActions';
+import { load as loadCategories } from '../../reducers/categoryReducer';
+
+
+console.log("THIS IS LAODCATEGORIES",loadCategories);
 
 class AddProductForm extends Component{
     renderField(field){
@@ -25,6 +31,7 @@ class AddProductForm extends Component{
             </div>
         );
     }
+
 
     onSubmit(props){
         this.props.createProduct(props);
@@ -62,12 +69,25 @@ class AddProductForm extends Component{
                         type="radio"
                         component={this.renderField}
                     />
-
+                        
                     <Field
                         label="Subcategory"
                         name="subcategory"
                         component={this.renderField}
                     /> */}
+                    <div>
+                        <label>Category</label>
+                        <div>
+                        <Field name="category" component="select">
+                            <option value="">Select a category...</option>
+                            {getAllCategories(data => (
+                            <option value={data.name} key={data.id}>
+                                {data.name}
+                            </option>
+                            ))}
+                        </Field>
+                        </div>
+                    </div>
                     <Field
                         label="Subcategory"
                         name="subCategoryId"
@@ -152,3 +172,9 @@ export default reduxForm({
 // radio btn
 // validation
 // 
+AddProductForm = connect(
+    state => ({
+        initialValues: state.allCategories
+    }),
+    { load: loadCategories }, 
+)(AddProductForm);

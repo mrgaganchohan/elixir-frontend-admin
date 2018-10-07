@@ -22,3 +22,6 @@ export default (state = initialState, action) => {
             return state;
     }
 }
+
+export const load = data => ({ type: CATEGORY_GET_ALL, data });
+console.log("THIS IS THE LOAD",load);

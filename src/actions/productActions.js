@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export function createProduct(props) {
     
-    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/addImage`, props);
+    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/add`, props);
     console.log(req);
     return{
         // console.log(values)

@@ -1,6 +1,6 @@
 //implement admin calls to api
 import {API_ADDRESS, MICRO_PRODUCTS} from '../constants/constants';
-import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT} from '../actions/types';
+import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT, PRODUCTS_DELETE_PRODUCT, PRODUCTS_DELETE_PRODUCT_FAILED, PRODUCTS_DELETE_PRODUCT_SUCCESS} from '../actions/types';
 import axios from 'axios';
 
 export function createProduct(props) {
@@ -22,27 +22,30 @@ export const getAllProducts = () => dispatch => {
     .then(products => dispatch({
         type: PRODUCTS_GET_ALL,
         payload: products.data
-    }, console.log(products.data)));
+    }));
 }
 
 export const getProduct = (id) => dispatch => {
-    //console.log("get product info");
+    console.log("get product info");
     axios.get(API_ADDRESS + MICRO_PRODUCTS + `/getByProductId/${id}`)
     .catch(error => console.log(error.status))
     .then(res => res)
     .then(product => dispatch({
         type: PRODUCTS_GET_PRODUCT,
         payload: product.data
-    }, console.log("product in action: ", product.data)));
+    } ));
 }
 
-// export const createProduct = (values) => dispatch => {
-//     axios.post(API_ADDRESS + MICRO_PRODUCTS + `/addImage`)
-//     .catch(error => console.log(error.status))
-//     .then(res => res)
-//     .then(product => dispatch({
-//         type: PRODUCTS_ADD_PRODUCT,
-//         payload: product.data
-//     }, console.log("product posting: hithithithititithit", product.data)));
-// } 
-
+export const deleteProduct = (id) => dispatch => {
+    //console.log("get product info");
+    axios.get(API_ADDRESS + MICRO_PRODUCTS + `/delete/${id}`)
+    .catch(error => dispatch({
+        type: PRODUCTS_DELETE_PRODUCT_FAILED,
+        payload: error.data
+    } ))
+    .then(res => res)
+    .then(product => dispatch({
+        type: PRODUCTS_DELETE_PRODUCT_SUCCESS,
+        payload: product.data
+    } ));
+}

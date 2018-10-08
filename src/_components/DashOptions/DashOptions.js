@@ -38,7 +38,7 @@ class DashOptions extends Component {
         }
 
         return(
-            <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3 content-margin">
               <div className="container">
               <ul className="nav nav-pills nav-fill mb-2">
                     <li className="nav-item mr-1">

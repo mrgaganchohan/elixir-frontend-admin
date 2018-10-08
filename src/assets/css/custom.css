@@ -149,6 +149,45 @@ html, body {
     overflow:auto !important;
 } */
 
+
+.modalHeader {
+    font-weight: 700;
+    color: #576574;
+    padding-top: 20px !important;
+}
+
+.modalOptions {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 15px;
+    margin-left: -15px;
+    width: 100%;
+}
+
+.modalIcon {
+    color: #ffc107 !important;
+}
+
+.content-margin {
+    margin-top: 55px !important;
+}
+
+.toast-success-griz {
+    background: #2ecc71 !important;
+    border-radius: 10px !important;
+    margin-top: 50px;
+    color: #fff !important;
+}
+
+.vp-image-container {
+    height: 400px !important;
+}
+
+.pv-back-btn {
+    padding: 0px !important;
+    border: 0px !important;
+}
+
 .image-uploader{
 
-  }
+}

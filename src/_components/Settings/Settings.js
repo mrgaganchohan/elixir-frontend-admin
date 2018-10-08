@@ -267,8 +267,10 @@ class Settings extends Component {
 
     submitChangeDetails() {
         //implement submit details change 
+        //remove whitespace at end of string
+        let name = this.state.adminData.name.trim();
         let updatedData = {
-            name: this.state.adminData.name,
+            name: name,
             contactNum: this.state.adminData.contactNum,
             designation: this.state.adminData.designation,
             office: this.state.adminData.office
@@ -374,7 +376,7 @@ class Settings extends Component {
         return (
             <div>
                 <Dashboard />
-                <main className="col-sm-9 offset-sm-3 col-md-9 offset-md-2 pt-3">
+                <main className="col-sm-9 offset-sm-3 col-md-9 offset-md-2 pt-3 content-margin">
                <h1 className="text-left mt-2"><span className="fa fa-cog pr-2 big-icon-color"></span>Profile Settings</h1>
                <hr />
                 <div className="container">

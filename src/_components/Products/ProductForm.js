@@ -6,6 +6,7 @@ import SettingsButton from '../Settings/SettingsButton';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {getAllProducts} from '../../actions/productActions';
+import {getAllCategories} from '../../actions/categoryActions';
 
 class ProductForm extends Component {
 
@@ -15,10 +16,14 @@ class ProductForm extends Component {
         this.state = {
             searchInput: "",
             sortByValue: "",
-            displayedItems: this.props.products
+            displayedItems: []
         }
 
-        this.originalItems = this.props.products;
+        this.initialData = [];
+
+        this.populatedCats = false;
+        this.updatedProductInfo = [];
+        this.loadedNewData = false;
 
         this.handleSearch = this.handleSearch.bind(this);
         this.resetForm = this.resetForm.bind(this);
@@ -26,21 +31,26 @@ class ProductForm extends Component {
     }
 
     componentWillMount() {
-        //this.props.getAllProducts();
+        this.props.getAllCategories();
     }
 
-    handleSearch = (e) => {
 
-        let newlyDisplayed = this.props.products.filter(products => products.product.name.toLowerCase().indexOf(e.target.value) !== -1 
-                                                                    || products.product.name.indexOf(e.target.value) !== -1);
+    handleSearch = (e) => {
+        let newlyDisplayed = this.updatedProductInfo.filter(products => products.name.toLowerCase().indexOf(e.target.value) !== -1 
+                                                                     || products.name.indexOf(e.target.value) !== -1);
     
+        console.log("NEWLY DISPLYED AFTER SEARCH ", newlyDisplayed)
+
         this.setState({
-            searchInput: e.target.value
+            searchInput: e.target.value,
+            displayedItems: newlyDisplayed
         })
         this.sortInputChange(newlyDisplayed);
+        this.loadedNewData = true;
     }
 
     resetForm = () => {
+        this.loadedNewData = false;
         let searchInputValue= document.getElementById("searchInput").value;
         let resetSortByValue = document.getElementById("sortByDropdown").value = "";
         searchInputValue = "";
@@ -48,14 +58,21 @@ class ProductForm extends Component {
         let newlyDisplayed = this.props.products.filter(products => products.product.name.toLowerCase().indexOf(searchInputValue) !== -1 
                                                                     || products.product.name.indexOf(searchInputValue) !== -1);
 
+        this.populatedCats = false;
+        this.loadedNewData = false;
+
+        console.log("Displayted items reset function", this.state.displayedItems)
+
         this.setState({
             searchInput: searchInputValue,
             sortByValue: resetSortByValue,
-            displayedItems: newlyDisplayed
+            displayedItems: this.updatedProductInfo
         })
     }
 
     sortProducts = (e) => {
+        this.loadedNewData = false;
+
        switch(e.target.value) {
             case "name":
                 let sortedByName = this.state.displayedItems.sort((a,b) => this.sortProperty(a,b, "name"));
@@ -70,10 +87,12 @@ class ProductForm extends Component {
                         displayedItems: sortedByName
                     })
                 }, 100)
+                this.loadedNewData = true;
                 return;
             case "brand":
                 let sortedByBrand = this.state.displayedItems.sort((a,b) => this.sortProperty(a,b, "brand"));
                 
+                console.log("sorted by brand ", sortedByBrand)
                 this.setState({
                     sortByValue: e.target.value,
                     displayedItems: []
@@ -84,9 +103,22 @@ class ProductForm extends Component {
                         displayedItems: sortedByBrand
                     })
                 }, 100)
+                this.loadedNewData = true;
                 return;
             case "category":
-                console.log("name has been hit!");
+                let sortedByCategory = this.state.displayedItems.sort((a,b) => this.sortProperty(a,b, "category"));
+                            
+                console.log("Sorted categories", sortedByCategory)
+                this.setState({
+                    displayedItems: []
+                })
+
+                setTimeout(() => {
+                    this.setState({
+                        displayedItems: sortedByCategory
+                    })
+                }, 100)
+                this.loadedNewData = true;
                 return;
             case "ratingHighLow":
                 let sortedByRatingHighToLow = this.state.displayedItems.sort((a,b) => this.sortProperty(b,a, "rating"));
@@ -101,6 +133,7 @@ class ProductForm extends Component {
                         displayedItems: sortedByRatingHighToLow
                     })
                 }, 100)
+                this.loadedNewData = true;
                 return;
             case "ratingLowHigh":
                 let sortedByRatingLowToHigh = this.state.displayedItems.sort((a,b) => this.sortProperty(a,b, "rating"));
@@ -115,11 +148,14 @@ class ProductForm extends Component {
                         displayedItems: sortedByRatingLowToHigh
                     })
                 }, 100)
+                this.loadedNewData = true;
                 return;
             default:
             this.setState({
-                displayedItems: this.originalItems
+                displayedItems: this.initialData
             })
+            this.populatedCats = false;
+            this.loadedNewData = false;
                 return;
        }
     }
@@ -128,77 +164,145 @@ class ProductForm extends Component {
         console.log("THIS STATE VALUE === ", this.state.sortByValue)
         switch(this.state.sortByValue) {
              case "name":
-                 let sortedByName = currentList.sort((a,b) => this.sortProperty(a,b, "name"));
- 
-                 this.setState({
-                     displayedItems: []
-                 })
- 
-                 setTimeout(() => {
-                     this.setState({
-                         displayedItems: sortedByName
-                     })
-                 }, 0)
-                 return;
-             case "brand":
-                 let sortedByBrand = currentList.sort((a,b) => this.sortProperty(a,b, "brand"));
-                 
-                 this.setState({
-                     displayedItems: []
-                 })
- 
-                 setTimeout(() => {
-                     this.setState({
-                         displayedItems: sortedByBrand
-                     })
-                 }, 0)
-                 return;
-             case "category":
-                 console.log("name has been hit!");
-                 return;
-             case "ratingHighLow":
-                 let sortedByRatingHighToLow = currentList.sort((a,b) => this.sortProperty(b,a, "rating"));
-                     
-                 this.setState({
-                     displayedItems: []
-                 })
- 
-                 setTimeout(() => {
-                     this.setState({
-                         displayedItems: sortedByRatingHighToLow
-                     })
-                 }, 0)
-                 return;
-             case "ratingLowHigh":
-                 let sortedByRatingLowToHigh = currentList.sort((a,b) => this.sortProperty(a,b, "rating"));
-                         
-                 this.setState({
-                     displayedItems: []
-                 })
- 
-                 setTimeout(() => {
-                     this.setState({
-                         displayedItems: sortedByRatingLowToHigh
-                     })
-                 }, 0)
-                 return;
-             default:
+                let sortedByName = currentList.sort((a,b) => this.sortProperty(a,b, "name"));
+
+                console.log("Sorted by name values input change ", sortedByName)
+
                 this.setState({
-                    displayedItems: currentList
+                    displayedItems: []
                 })
+                setTimeout(() => {
+                    this.setState({
+                        displayedItems: sortedByName
+                    })
+                }, 100)
+                this.loadedNewData = true;
+                return;
+             case "brand":
+                let sortedByBrand = currentList.sort((a,b) => this.sortProperty(a,b, "brand"));
+                
+                this.setState({
+                    displayedItems: []
+                })
+                setTimeout(() => {
+                    this.setState({
+                        displayedItems: sortedByBrand
+                    })
+                }, 100)
+                return;
+             case "category":
+                let sortedByCategory = currentList.sort((a,b) => this.sortProperty(b,a, "category"));
+                        
+                console.log("Sorted categories", sortedByCategory)
+                this.setState({
+                    displayedItems: []
+                })
+                setTimeout(() => {
+                    this.setState({
+                        displayedItems: sortedByCategory
+                    })
+                }, 100)
+             return;
+             case "ratingHighLow":
+                let sortedByRatingHighToLow = currentList.sort((a,b) => this.sortProperty(b,a, "rating"));
+                    
+                this.setState({
+                    displayedItems: []
+                })
+                setTimeout(() => {
+                    this.setState({
+                        displayedItems: sortedByRatingHighToLow
+                    })
+                }, 100)
+                return;
+             case "ratingLowHigh":
+                let sortedByRatingLowToHigh = currentList.sort((a,b) => this.sortProperty(a,b, "rating"));
+                        
+                this.setState({
+                    displayedItems: []
+                })
+                setTimeout(() => {
+                    this.setState({
+                        displayedItems: sortedByRatingLowToHigh
+                    })
+                    console.log("Displayed items array ", this.displayedItems)
+                }, 100)
+                return;
+             default:
+            
+                this.populatedCats = false;
+                this.loadedNewData = false;
                 return;
         }
      }
 
    sortProperty = (a, b, type) => {
-        if (a.product[type] < b.product[type]) //sort string ascending
+       if(type === "category") {
+          // console.log("logging product category",this.displayedItems, a.product.category[0])
+        if (a[type][0].name < b[type][0].name) //sort string ascending
             return -1 
-        if (a.product[type] > b.product[type])
+        if (a[type][0].name > b[type][0].name)
             return 1
         return 0
+       }
+       else {
+        if (a[type] < b[type]) //sort string ascending
+            return -1 
+        if (a[type] > b[type])
+            return 1
+        return 0
+       }
    }
 
     render() {
+
+        if(!this.populatedCats && this.props.allCategories.length > 0 && !this.loadedNewData) {
+            this.updatedProductInfo = [];
+
+            
+            this.props.products.map((data, index) => {
+                if(index === this.props.products.length-1) {
+                    this.populatedCats = true;
+                }
+
+                console.log("all cats data", this.props.allCategories)
+               
+                let subCategoryNumber = data.product.subCategoryId;
+                console.log("Sub category ID:", subCategoryNumber)
+            
+                let found = this.props.allCategories.filter(category => {
+                  if(category.catId === subCategoryNumber) {
+                      return category.name;
+                  }
+                })
+
+                console.log("FOUD ROW ", found)
+
+                if(found[0] === undefined) {
+                    let defaultNotFound = [{name: "not found"}];
+                    this.props.products[index].product.category = defaultNotFound;
+                    data.product.category = defaultNotFound;
+                } else {
+
+                    data.product.category = found;
+                    this.props.products[index].product.category = found;
+                }
+
+                this.updatedProductInfo.push(data.product)
+            })
+
+            if(this.initialData.length == 0) {
+                this.initialData = this.updatedProductInfo;
+            }
+
+            console.log("updated datat",this.updatedProductInfo)
+            this.setState({
+                displayedItems: this.updatedProductInfo
+            })
+            this.populatedCats = true;
+            this.loadedNewData = true;
+        }
+
         return(
             <div>
                 <SettingsButton />
@@ -208,19 +312,10 @@ class ProductForm extends Component {
                     <div className="col-lg-3">
                         <input type="text" className="form-control" id="searchInput" onChange={this.handleSearch} placeholder="Search by Product Name" value={this.state.searchInput}/>
                     </div>
-                    <div className="col-lg-2">
-                         <select className="form-control">
-                            <option value="" defaultValue="">Filter by Category</option>
-                            <option>Latops</option>
-                            <option>Latops</option>
-                            <option>Latops</option>
-                            <option>Latops</option>
-                         </select>
-                    </div>
-                    <div className="col-lg-2">
+                    <div className="col-lg-2 pl-0">
                          <select id="sortByDropdown" className="form-control" onChange={this.sortProducts}>
                             <option value="" defaultValue="">Sort By</option>
-                            <option value="name">Name</option>
+                            <option value="name" defaultValue="name">Name</option>
                             <option value="brand">Brand</option>
                             <option value="category">Category</option>
                             <option value="ratingHighLow">Rating (highest to lowest)</option>
@@ -234,7 +329,7 @@ class ProductForm extends Component {
                         Add Product</Link>
                     </div>
                 </div>
-                <ProductsTable tableRows={this.state.displayedItems}/>
+                <ProductsTable tableRows={this.state.displayedItems} loaded={this.loadedNewData}/>
                 </main>
             </div>
         )
@@ -242,14 +337,16 @@ class ProductForm extends Component {
 }
 
 ProductForm.propTypes = {
-    getProduct: PropTypes.func.isRequired,
+    getAllCategories: PropTypes.func.isRequired,
     products: PropTypes.array,
-    product: PropTypes.object
+    product: PropTypes.object,
+    allCategories: PropTypes.array
 }
 
 const mapStateToProps = state => ({
     products: state.productData.allProducts,
-    product: state.productData.product
+    product: state.productData.product,
+    allCategories: state.categoryData.allCategories
 })
 
-export default connect(mapStateToProps, {getAllProducts})(ProductForm);
+export default connect(mapStateToProps, {getAllProducts, getAllCategories})(ProductForm);

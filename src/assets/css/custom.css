@@ -149,6 +149,7 @@ html, body {
     overflow:auto !important;
 } */
 
+
 .modalHeader {
     font-weight: 700;
     color: #576574;
@@ -185,4 +186,8 @@ html, body {
 .pv-back-btn {
     padding: 0px !important;
     border: 0px !important;
+}
+
+.image-uploader{
+
 }

@@ -323,7 +323,7 @@ class ProductForm extends Component {
                          </select>
                     </div>
                     <div className="col-lg-5 col-md-2 pl-0">
-                    <button className="btn btn-danger cog-radius float-left" onClick={this.resetForm}>Reset</button>
+                    <button className="btn btn-danger cog-radius float-left" onClick={this.resetForm}> <span className="fa fa-retweet pr-2"></span>Reset</button>
                         <Link className="btn btn-primary cog-radius ml-3 float-left" to="/product/add">
                             <span className="fa fa-plus pr-2"></span>
                         Add Product</Link>

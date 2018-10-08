@@ -12,7 +12,7 @@ const ViewProductInfo = (props) => {
     console.table(props)
 
     let image = props.data.list.length === 1 ? 
-    <img width="100%" height="400" alt="" src={props.data.list[0]}/> 
+    <img width="100%" height="400" width="350" alt="" src={props.data.list[0]}/> 
     : <ProductCarousel key={props.data.product.id} productImage={props.data.list}/>;
 
     console.log("DTA VIEW PRODUCT", props)

@@ -39,13 +39,13 @@ class ViewProduct extends Component {
 
         setTimeout(() => {
            if(this.props.isError) {
-            toast.error(this.props.message);
+            toast.error("Whoops! An error occured.");
             this.setState({
                 disabledBack: false
             })
            }
            else {
-            toast(this.props.message, {
+            toast("Successfully deleted.", {
                 position: toast.POSITION.TOP_RIGHT,
                 className: 'toast-success-griz'
                });

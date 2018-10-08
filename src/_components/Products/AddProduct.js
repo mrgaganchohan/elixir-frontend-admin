@@ -12,6 +12,8 @@ import {getAllSubCategories, getSubCategory } from '../../actions/subcategoryAct
 import Dashboard from '../Dashboard/Dashboard';
 
 import AddProductForm from './AddProductForm';
+import AddImages from './AddImages';
+
 
 class AddProduct extends Component {
 
@@ -72,9 +74,9 @@ class AddProduct extends Component {
                 </div>
                <div className="row marg-top-25">
                     <div className="col-lg-4 col-md-12">
-                        <div className="w-100 h-100 cog-radius">
+                        {/* <div className="w-100 h-100 cog-radius">
                            <img width="100%" height="400" alt=""/>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="col-lg-5 col-md-6">
                         {/* <div className="col-lg-12 col-md-12 form-group w-75">
@@ -120,10 +122,11 @@ class AddProduct extends Component {
                </div>
                <div className="row">
                     <div className="col-11">
-                        <button className="btn btn-success cog-radius float-right">Done<span className="fa fa-check pl-2"></span></button>
-                        <Link className="btn btn-light cog-radius float-right mr-3" to="/products">Cancel</Link>
+                        {/* <button className="btn btn-success cog-radius float-right">Done<span className="fa fa-check pl-2"></span></button> */}
+                        {/* <Link className="btn btn-light cog-radius float-right mr-3" to="/products">Cancel</Link> */}
                     </div>
                </div>
+               <AddImages />
                <AddProductForm />
                 </main>
             </div>

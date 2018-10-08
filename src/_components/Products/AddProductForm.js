@@ -5,6 +5,7 @@ import { createProduct } from '../../actions/productActions';
 import {getAllCategories, getCategory } from '../../actions/categoryActions';
 import {getAllSubCategories, getSubCategory } from '../../actions/subcategoryActions';
 import { load as loadCategories } from '../../reducers/categoryReducer';
+import {Link} from 'react-router-dom';
 
 
 console.log("THIS IS LAODCATEGORIES",loadCategories);
@@ -148,13 +149,14 @@ class AddProductForm extends Component{
                     /> */}
                      
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-success cog-radius float-right">Submit</button>
+                <Link className="btn btn-light cog-radius float-right mr-3" to="/products">Cancel</Link>
             </form>
         
             )};
 }
 
-function validate(values){
+function validate(data){
     const errors = {};
 }
 
@@ -164,7 +166,7 @@ function validate(values){
 export default reduxForm({
     validate, 
     form: 'AddProductForm',
-    field: [ 'name', 'productId', 'brand', 'subCategoryId', 'rating', 'status', 'description', 'price', 'discount'  ]
+    field: [ 'name', 'productId', 'brand', 'subCategoryId', 'rating', 'status', 'description', 'price', 'discount', 'file'  ]
     // list: ['list']
 }) (connect(null, { createProduct })(AddProductForm));
 // get the initial state

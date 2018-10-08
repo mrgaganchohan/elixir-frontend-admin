@@ -14,12 +14,14 @@ class Products extends Component {
 
     constructor(props) {
         super(props);
-        //console.log(this.props.products)
     }
 
     componentWillMount() {
         this.props.getAllProducts();
-        
+    }
+    
+    componentDidMount() {
+        this.props.getAllProducts();
     }
 
     render() {

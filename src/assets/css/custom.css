@@ -170,3 +170,19 @@ html, body {
 .content-margin {
     margin-top: 55px !important;
 }
+
+.toast-success-griz {
+    background: #2ecc71 !important;
+    border-radius: 10px !important;
+    margin-top: 50px;
+    color: #fff !important;
+}
+
+.vp-image-container {
+    height: 400px !important;
+}
+
+.pv-back-btn {
+    padding: 0px !important;
+    border: 0px !important;
+}

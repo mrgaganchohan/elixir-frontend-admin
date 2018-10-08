@@ -1,14 +1,15 @@
-import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT} from '../actions/types';
+import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT, PRODUCTS_DELETE_PRODUCT_SUCCESS, PRODUCTS_DELETE_PRODUCT_FAILED} from '../actions/types';
 
 const initialState = {
     allProducts: [],
-    product: {}
+    product: {},
+    productDeleteMessage: "coming from redux reducer...",
+    isError: false
 }
 
 export default (state = initialState, action) => {
     switch(action.type) {
         case PRODUCTS_GET_ALL:
-            //console.log("product DATA BEING HIT REDUCER");
             return {
                 ...state,
                 allProducts: action.payload
@@ -17,6 +18,18 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 product: action.payload
+            }
+        case PRODUCTS_DELETE_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                productDeleteMessage: action.payload,
+                isError: false
+            }
+        case PRODUCTS_DELETE_PRODUCT_FAILED:
+            return {
+                ...state,
+                productDeleteMessage: action.payload,
+                isError: true
             }
         default:
             return state;

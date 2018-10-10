@@ -3,9 +3,10 @@ import {API_ADDRESS, MICRO_PRODUCTS} from '../constants/constants';
 import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT, PRODUCTS_DELETE_PRODUCT, PRODUCTS_DELETE_PRODUCT_FAILED, PRODUCTS_DELETE_PRODUCT_SUCCESS} from '../actions/types';
 import axios from 'axios';
 
-export function createProduct(props) {
+export function createProduct(props, callback) {
     
-    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/add`, props);
+    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/add`, props)
+        .then(() => callback());
     console.log(req);
     return{
         // console.log(values)

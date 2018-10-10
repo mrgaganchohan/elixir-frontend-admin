@@ -2,17 +2,9 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createProduct, createProductImages } from '../../actions/productActions';
-import {getAllCategories, getCategory } from '../../actions/categoryActions';
-import {getAllSubCategories, getSubCategory } from '../../actions/subcategoryActions';
+import { getSubCategory } from '../../actions/subcategoryActions';
 import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';
-import store from '../../store/store';
-
-
-console.log("THIS IS LAODCATEGORIES",loadCategories);
-
-const categoryData = [];
-const subCategoryData = [];
 
 class AddProductForm extends Component{
 
@@ -38,16 +30,12 @@ class AddProductForm extends Component{
     }
 
     onSubmit(props){
-        this.props.createProduct(props);
-        console.log(props);
-
-        // setTimeout(() => {
-        //     this.props.history.goBack();
-        // }, 1500)
+        this.props.createProduct(props, () => {
+            this.props.history.goBack();
+        });
     }
 
     categoryClick(event){
-        console.log(event.target.value)
         if(event.target.value){
             this.props.getSubCategory(event.target.value);
         }
@@ -69,10 +57,8 @@ class AddProductForm extends Component{
     }
 
     render() {
-
         const { handleSubmit } = this.props;
-        console.log(this.props)
-        // field: { name, productId, brand, , category, subCategoryId, rating, status, description, price, discount },
+
         return(
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
                 <div className="col-lg-5 col-md-6">
@@ -94,15 +80,6 @@ class AddProductForm extends Component{
                         type="text"
                         component={this.renderField}
                     />
-                    {/* <Field component="select" name="category" onChange={this.categoryClick.bind(this)}>
-                         <option value=""> Select a Category</option>
-                         {this.props.initialValues.map(categoryOption => (
-                             <option value={categoryOption.name} key={categoryOption.id}>
-                                 {categoryOption.name}
-                             </option>
-                         ))}
-                     </Field> */}
-
                      <div className="col-lg-12 col-md-12 form-group w-50">
                             <select className="form-control" onChange={this.categoryClick.bind(this)}>
                                 <option value="" defaultValue="">Select a Category</option>

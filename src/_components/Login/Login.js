@@ -21,6 +21,7 @@ class Login extends Component {
 
     handleLogin() {
         this.props.authenticateUser();
+        //test
     }
 
   render() {

@@ -31,6 +31,16 @@ export default (state = initialState, action) => {
                 productDeleteMessage: action.payload,
                 isError: true
             }
+        // case PRODUCTS_ADD_PRODUCT:
+        //  return {
+        //      ...state,
+        //      images: [
+        //          {
+        //              name: action.url,
+        //              sort: action.sort
+        //          }
+        //      ]
+        //  }
         default:
             return state;
     }

@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createProduct } from '../../actions/productActions';
+import { createProduct, createProductImages } from '../../actions/productActions';
 import {getAllCategories, getCategory } from '../../actions/categoryActions';
 import {getAllSubCategories, getSubCategory } from '../../actions/subcategoryActions';
 import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';
+import store from '../../store/store';
 
 
 console.log("THIS IS LAODCATEGORIES",loadCategories);
 
+const categoryData = [];
+const subCategoryData = [];
+
 class AddProductForm extends Component{
+
     renderField(field){
         const { meta: { touched, error } } = field;
         const productform = `form-group className="form-group col-lg-12 col-md-12 form-group w-75" ${touched && error ? 'has-danger' : ''}`
-        // console.log(field)
+
         return(
             <div className={productform}>
                 <label>{field.label}</label>
-                {/* <name>{field.name}</name> */}
                 <input 
                     className="form-control"
                     type={field.type}
@@ -33,18 +37,44 @@ class AddProductForm extends Component{
         );
     }
 
-
     onSubmit(props){
         this.props.createProduct(props);
         console.log(props);
+
+        // setTimeout(() => {
+        //     this.props.history.goBack();
+        // }, 1500)
     }
 
-    render(){
-        const { field: { name, productId, brand, subCategoryId, rating, status, description, price, discount }, handleSubmit } = this.props;
+    categoryClick(event){
+        console.log(event.target.value)
+        if(event.target.value){
+            this.props.getSubCategory(event.target.value);
+        }
+    }
 
-        // field: { name, productId, brand, subCategoryId, rating, status, description, price, discount },
+    renderSubcategories(){
+        if(Object.getOwnPropertyNames(this.props.subCategories).length !== 0){
+            return( 
+                <Field name="subCategoryId" component="select">        
+                    <option>Sub-Category</option>
+                        {this.props.subCategories.map(subCategoryOption => (
+                            <option value={subCategoryOption.subId} key={subCategoryOption.subId}>
+                                {subCategoryOption.name}
+                            </option>
+                        ))}
+                </Field>
+            )
+        }
+    }
+
+    render() {
+
+        const { handleSubmit } = this.props;
+        console.log(this.props)
+        // field: { name, productId, brand, , category, subCategoryId, rating, status, description, price, discount },
         return(
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
                 <div className="col-lg-5 col-md-6">
                     <Field
                         label="Product Name"
@@ -64,36 +94,28 @@ class AddProductForm extends Component{
                         type="text"
                         component={this.renderField}
                     />
-                    {/* <Field
-                        label="Category"
-                        name="category"
-                        type="radio"
-                        component={this.renderField}
-                    />
-                        
-                    <Field
-                        label="Subcategory"
-                        name="subcategory"
-                        component={this.renderField}
-                    /> */}
-                    <div>
-                        <label>Category</label>
-                        <div>
-                        <Field name="category" component="select">
-                            <option value="">Select a category...</option>
-                            {getAllCategories(data => (
-                            <option value={data.name} key={data.id}>
-                                {data.name}
-                            </option>
-                            ))}
-                        </Field>
-                        </div>
+                    {/* <Field component="select" name="category" onChange={this.categoryClick.bind(this)}>
+                         <option value=""> Select a Category</option>
+                         {this.props.initialValues.map(categoryOption => (
+                             <option value={categoryOption.name} key={categoryOption.id}>
+                                 {categoryOption.name}
+                             </option>
+                         ))}
+                     </Field> */}
+
+                     <div className="col-lg-12 col-md-12 form-group w-50">
+                            <select className="form-control" onChange={this.categoryClick.bind(this)}>
+                                <option value="" defaultValue="">Select a Category</option>
+                            {this.props.initialValues.map(categoryOption => (
+                             <option value={categoryOption.name} key={categoryOption.id}>
+                                 {categoryOption.name}
+                             </option>
+                         ))}
+                            </select>
                     </div>
-                    <Field
-                        label="Subcategory"
-                        name="subCategoryId"
-                        component={this.renderField}
-                    />
+                
+                        {this.renderSubcategories()}
+                    
                     <Field
                         label="Rating"
                         name="rating"
@@ -141,12 +163,6 @@ class AddProductForm extends Component{
                         type="text"
                         component={this.renderField}
                     />
-                    {/* <Field
-                        label="Upload Images"
-                        name="file"
-                        type="file"
-                        component={this.renderField}
-                    /> */}
                      
                 </div>
                 <button type="submit" className="btn btn-success cog-radius float-right">Submit</button>
@@ -160,23 +176,16 @@ function validate(data){
     const errors = {};
 }
 
-
-// connect:  1st arg: mapStateToProps, 2nd arg: mapDispatchToProps
-//reduxForm: 1st arg: form config, 2nd arg: mapStateToProps, 3rd arg: mapDispatchToProps
-export default reduxForm({
-    validate, 
-    form: 'AddProductForm',
-    field: [ 'name', 'productId', 'brand', 'subCategoryId', 'rating', 'status', 'description', 'price', 'discount', 'file'  ]
-    // list: ['list']
-}) (connect(null, { createProduct })(AddProductForm));
-// get the initial state
-// map subcategory state
-// radio btn
-// validation
-// 
 AddProductForm = connect(
     state => ({
-        initialValues: state.allCategories
+        initialValues: state.categoryData.allCategories,
+        subCategories: state.subCategoryData.subCategory
     }),
-    { load: loadCategories }, 
+    { getSubCategory, createProduct },
 )(AddProductForm);
+
+AddProductForm = reduxForm({
+    form: 'AddProductForm',
+})(AddProductForm);
+
+export default AddProductForm;

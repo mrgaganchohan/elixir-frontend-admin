@@ -35,8 +35,8 @@ class CategoryForm extends Component {
         <SettingsButton />
         <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
           <h3 className="float-left d-inline mb-3"><span className="fa fa-list-alt pr-2 big-icon-color"></span>Category</h3>
-          <button className="btn btn-primary cog-radius float-right mr-3"> <span className="fa fa-plus pr-2"></span>Add Category</button>
-          <CategoryTable catgoryRowData={this.props.allCategories}/>
+          <button className="btn btn-primary cog-radius float-right mr-3"><span className="fa fa-plus pr-2"></span>Add Category</button>
+          <CategoryTable />
         </main>
       </div>
     )

@@ -48,7 +48,7 @@ class DashOptions extends Component {
                         <Link className={`nav-link ${tiles.vendors} radius-item dash-option-bord`} href="#" to="/">Vendors</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={`nav-link ${tiles.category} radius-item dash-option-bord`} href="#" to="/">Category</Link>
+                        <Link className={`nav-link ${tiles.category} radius-item dash-option-bord`} href="#" to="/category">Category</Link>
                     </li>
                 </ul>
               </div>

@@ -3,16 +3,16 @@ import {API_ADDRESS, MICRO_PRODUCTS} from '../constants/constants';
 import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT, PRODUCTS_DELETE_PRODUCT, PRODUCTS_DELETE_PRODUCT_FAILED, PRODUCTS_DELETE_PRODUCT_SUCCESS} from '../actions/types';
 import axios from 'axios';
 
-export function createProduct(props, callback) {
+export function createProduct(props, images, callback) {
     
-    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/add`, props)
+    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/addImage`, props, images)
         .then(() => callback());
-    console.log(req);
-    return{
-        // console.log(values)
-        type: PRODUCTS_ADD_PRODUCT,
-        payload: req
-    }
+        console.log(req);
+        return{
+            // console.log(values)
+            type: PRODUCTS_ADD_PRODUCT,
+            payload: req
+        }
 }
 
 export const getAllProducts = () => dispatch => {

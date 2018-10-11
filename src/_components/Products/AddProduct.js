@@ -5,8 +5,6 @@ import SettingsButton from '../Settings/SettingsButton';
 import Dashboard from '../Dashboard/Dashboard';
 
 import AddProductForm from './AddProductForm';
-import AddImages from './AddImages';
-
 
 class AddProduct extends Component {
     render() {
@@ -26,7 +24,6 @@ class AddProduct extends Component {
                     </div>
                </div>
                
-               <AddImages />
                <AddProductForm history={this.props.history}/>
                 </main>
             </div>

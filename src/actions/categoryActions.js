@@ -22,3 +22,13 @@ export const getCategory = (category) => dispatch => {
         payload: categoryData.data
     }));
 }
+
+export const updateCategory = (category) => dispatch => {
+    console.log("update category info");
+    axios.put(API_ADDRESS + MICRO_CATEGORY + `/${category.name}`, category)
+    .catch(error => console.log(error.status))
+    .then(categoryData => dispatch({
+        type: CATEGORY_GET_CATEGORY,
+        payload: categoryData.data
+    }));
+}

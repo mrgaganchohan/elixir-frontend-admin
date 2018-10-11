@@ -5,8 +5,14 @@ import { createProduct, createProductImages } from '../../actions/productActions
 import { getSubCategory } from '../../actions/subcategoryActions';
 import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';
+import ImageUploader from 'react-images-upload';
 
 class AddProductForm extends Component{
+    constructor(props) {
+        super(props);
+        this.state = { images: [] };
+        this.onDrop = this.onDrop.bind(this);
+    }
 
     renderField(field){
         const { meta: { touched, error } } = field;
@@ -28,9 +34,22 @@ class AddProductForm extends Component{
             </div>
         );
     }
+    onDrop(images){
+        if (images.length <= 5) {
+            this.setState({
+                images: images
+            });
+        }
+        else {
+            console.log(images[images.length - 1])
+            this.notify('errorpic', images[images.length - 1]);
+        }
+    }
 
     onSubmit(props){
-        this.props.createProduct(props, () => {
+        console.log(props, this.state.images)
+
+        this.props.createProductImages( props, this.state.images, () => {
             this.props.history.goBack();
         });
     }
@@ -60,7 +79,20 @@ class AddProductForm extends Component{
         const { handleSubmit } = this.props;
 
         return(
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
+            <div>
+            <ImageUploader
+                withIcon={true}
+                buttonText='Choose images'
+                onChange={this.onDrop}
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
+                withPreview={true}
+                className="image-uploader"
+                fileSizeError='File size is too big'
+                fileTypeError="is not supported file extension"
+                label='Max file size: 5mb, accepted: jpg, png, gif'
+            />
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} enctype='multipart/form-data' >
                 <div className="col-lg-5 col-md-6">
                     <Field
                         label="Product Name"
@@ -145,6 +177,7 @@ class AddProductForm extends Component{
                 <button type="submit" className="btn btn-success cog-radius float-right">Submit</button>
                 <Link className="btn btn-light cog-radius float-right mr-3" to="/products">Cancel</Link>
             </form>
+            </div>
         
             )};
 }

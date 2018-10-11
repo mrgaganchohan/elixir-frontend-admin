@@ -15,9 +15,7 @@ const CategoryTableRow = (props) => {
           <td className="col-lg-4 text-left pt-2 pb-1 text-left">{props.catData.status}</td>
           <td className="col-lg-4 text-left pt-2 pb-1 text-center">
             <button className="btn btn-outline-warning cog-radius pl-4 pr-4"
-                    onClick={() => {this.openParentModal(props.catData)}}
-            >
-
+                    onClick={() => {this.openParentModal(props.catData)}}>
             <span className="fa fa-pencil pr-2"></span>
             Edit</button>
           </td>

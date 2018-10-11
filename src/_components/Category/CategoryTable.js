@@ -29,26 +29,64 @@ class CategoryTable extends Component {
       console.log("hitting open modal from category table row")
       console.log("values", values)
 
-      this.setState({ modalVisibility: true })
-    }
+      console.log("values name", values.name)
 
-    closeModal = () => {
-      this.setState({ modalVisibility: false })
-    }
+      this.setState({ 
+        modalVisibility: true,
+        categoryData: {
+          ...this.state.categoryData,
+          name: values.name,
+          status: values.status
+        }
+       },() => {
+        console.log("MODAL STATE ", this.state)
+      })
 
-    hanleNameChange = () => {
       
     }
 
-    handleStatusChange = (type) => {
-
+    closeModal = () => {
+      this.setState({ 
+        modalVisibility: false, 
+        categoryData: {
+          ...this.state.categoryData,
+          name: "",
+          status: ""
+        }
+      }, () => {
+        console.log("state after CLOSE", this.state)
+      })
     }
 
-    render() {
+    handleNameChange = (e) => {
+      this.setState({
+        categoryData: {
+          ...this.state.categoryData,
+          name: e.target.value
+        }
+      }, () => {
+        console.log(this.state.categoryData.name)
+      })
+    }
+
+    handleStatusChange = (e) => {
+      let type = e.target.value;
+      
+      this.setState({
+        categoryData: {
+          ...this.state.categoryData,
+          status: type
+        }
+      }, () => {
+        console.log("this state after change radio", this.state)
+      })
+    }
+
+   render() {
 
       if(this.props.allCategories.length > 0) {
         this.categoryData = this.props.allCategories.map((data) => {
-          console.log("data data data", data)
+          // console.log("data data data", data)
           return <CategoryTableRow key={data.catId} catData={data} openModal={this.openModal}/>
         })
       }
@@ -67,20 +105,20 @@ class CategoryTable extends Component {
                         <div className="container-fluid">
                           <div className="form-group">
                             <label className="float-left mb-0">Name</label>
-                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Enter a category name" />
+                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Enter a category name" value={this.state.categoryData.name} onChange={this.handleNameChange}/>
                           </div>
                           <div>
                           <label className="float-left mb-0">Status</label>
                           <br />
                             <div class="form-check float-left">
-                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
+                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Active" checked={this.state.categoryData.status === "Active"} onChange={this.handleStatusChange}/>
                               <label class="form-check-label" for="exampleRadios1">
                                 Active
                               </label>
                             </div>
                             <br />
                             <div class="form-check float-left">
-                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"/>
+                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Block" checked={this.state.categoryData.status !== "Active"} onChange={this.handleStatusChange}/>
                               <label class="form-check-label" for="exampleRadios2">
                                 Blocked
                               </label>

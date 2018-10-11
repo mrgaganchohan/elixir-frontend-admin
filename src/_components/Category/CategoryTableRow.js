@@ -6,7 +6,7 @@ const CategoryTableRow = (props) => {
 
     this.openParentModal = (catData) => {
         console.log('cat table row parent func');
-        props.openModal(catData);
+        props.openModal(catData) ;
     }
     
     return (

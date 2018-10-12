@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createProduct, ge } from '../../actions/productActions';
+import { createProduct, getAllProducts } from '../../actions/productActions';
 import { getSubCategory } from '../../actions/subcategoryActions';
 import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';

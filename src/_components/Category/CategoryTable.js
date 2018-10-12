@@ -145,7 +145,7 @@ class CategoryTable extends Component {
       let nameError =  !this.state.formValid ? 
                             <div>
                               <small id="emailHelp" className="mb-0 mt-0 form-text input-error-text float-left">
-                            Invalid input
+                            Cannot be empty
                             </small>
                               <br />
                             </div> :
@@ -173,18 +173,18 @@ class CategoryTable extends Component {
                           <div>
                           <label className="float-left mb-0">Status</label>
                           <br />
-                            <div class="form-check float-left">
-                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" 
+                            <div className="form-check float-left">
+                              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" 
                               value="Active" checked={this.state.categoryData.status === "Active"} onChange={this.handleStatusChange} />
-                              <label class="form-check-label" for="exampleRadios1">
+                              <label className="form-check-label">
                                 Active
                               </label>
                             </div>
                             <br />
-                            <div class="form-check float-left">
-                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" 
+                            <div className="form-check float-left">
+                              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" 
                               value="Block" checked={this.state.categoryData.status !== "Active"} onChange={this.handleStatusChange} />
-                              <label class="form-check-label" for="exampleRadios2">
+                              <label className="form-check-label">
                                 Blocked
                               </label>
                             </div>

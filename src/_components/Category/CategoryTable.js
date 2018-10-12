@@ -16,12 +16,15 @@ class CategoryTable extends Component {
         this.categoryData = [];
         this.state = {
           modalVisibility: false,
+          formValid: true,
+          nameErrorBorder: "",
           originalCategoryName: "",
           categoryData: {
             name: "",
             status: ""
           }
         }
+
     }
 
     componentWillMount() {
@@ -52,7 +55,8 @@ class CategoryTable extends Component {
     closeModal = () => {
       this.setState({ 
         modalVisibility: false,
-        originalCategoryName: "", 
+        originalCategoryName: "",
+        nameErrorBorder: "", 
         categoryData: {
           ...this.state.categoryData,
           name: "",
@@ -64,14 +68,22 @@ class CategoryTable extends Component {
     }
 
     handleNameChange = (e) => {
+      let str = e.target.value.replace(/\s*$/,"");
+
+      console.log("string!! -> ", str)
+      
       this.setState({
+        formValid: true,
         categoryData: {
           ...this.state.categoryData,
           name: e.target.value
         }
       }, () => {
-        console.log(this.state.categoryData.name)
+       this.checkValidity();
       })
+      
+
+      
     }
 
     handleStatusChange = (e) => {
@@ -104,6 +116,23 @@ class CategoryTable extends Component {
       
     }
 
+    checkValidity = () => {
+
+      let nameInput = this.state.categoryData.name.trim();
+
+        if(nameInput.length < 1) {
+          this.setState({
+            formValid: false,
+            nameErrorBorder: "input-error-border"
+          })
+        }
+        else {
+          this.setState({
+            nameErrorBorder: ""
+          })
+        }
+    }
+
    render() {
 
       if(this.props.allCategories.length > 0) {
@@ -112,6 +141,15 @@ class CategoryTable extends Component {
           return <CategoryTableRow key={data.catId} catData={data} openModal={this.openModal}/>
         })
       }
+
+      let nameError =  !this.state.formValid ? 
+                            <div>
+                              <small id="emailHelp" className="mb-0 mt-0 form-text input-error-text float-left">
+                            Invalid input
+                            </small>
+                              <br />
+                            </div> :
+                            null;
 
         return (
             <div>
@@ -128,8 +166,9 @@ class CategoryTable extends Component {
                         <div className="container-fluid">
                           <div className="form-group">
                             <label className="float-left mb-0">Name</label>
-                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Enter a category name" 
+                            <input type="text" className={`form-control ${this.state.nameErrorBorder}`} id="formGroupExampleInput" placeholder="Enter a category name" 
                             value={this.state.categoryData.name} onChange={this.handleNameChange} />
+                            {nameError}
                           </div>
                           <div>
                           <label className="float-left mb-0">Status</label>
@@ -154,7 +193,7 @@ class CategoryTable extends Component {
                     </div>
                     <div className="modalOptions">
                         <button onClick={this.closeModal} className="btn btn-danger mr-2 cog-radius">No thanks</button>
-                        <button onClick={this.handleSubmitUpdateCategory} className="btn btn-success cog-radius">Yes, I'm sure</button>
+                        <button onClick={this.handleSubmitUpdateCategory} disabled={!this.state.formValid} className="btn btn-success cog-radius">Yes, I'm sure</button>
                     </div>
                 </div>
               </Modal>

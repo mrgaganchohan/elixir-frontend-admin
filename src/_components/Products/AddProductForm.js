@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createProduct, getAllProducts } from '../../actions/productActions';
+import { createProduct, ge } from '../../actions/productActions';
 import { getSubCategory } from '../../actions/subcategoryActions';
 import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';
@@ -65,15 +65,12 @@ class AddProductForm extends Component{
         
         formData.append('file', this.state.images[0]);
         formData.append('file', this.state.images[1]);
-        formData.append('file', this.state.images[2]);
-        // formData.append('file', this.state.images[3]);
-        // formData.append('file', this.state.images[4]);
-        this.props.createProduct( formData,  () => {
+        this.props.createProduct( formData, () => {
             this.props.getAllProducts()
         
             setTimeout(() => {
                 this.props.history.goBack();
-            }, 1000)         
+            }, 1000)
         });
     }
 

@@ -1,6 +1,6 @@
 //implement calls to category api
 import {API_ADDRESS, MICRO_CATEGORY} from '../constants/constants';
-import {CATEGORY_GET_ALL, CATEGORY_GET_CATEGORY} from '../actions/types';
+import {CATEGORY_GET_ALL, CATEGORY_GET_CATEGORY, CATEGORY_UPDATE_CATEGORY} from '../actions/types';
 import axios from 'axios';
 
 export const getAllCategories = () => dispatch => {
@@ -23,12 +23,12 @@ export const getCategory = (category) => dispatch => {
     }));
 }
 
-export const updateCategory = (category) => dispatch => {
+export const updateCategory = (catName, category) => dispatch => {
     console.log("update category info");
-    axios.put(API_ADDRESS + MICRO_CATEGORY + `/${category.name}`, category)
+    axios.put(API_ADDRESS + MICRO_CATEGORY + `/update/${catName}`, category)
     .catch(error => console.log(error.status))
     .then(categoryData => dispatch({
-        type: CATEGORY_GET_CATEGORY,
-        payload: categoryData.data
-    }));
+        type: CATEGORY_UPDATE_CATEGORY,
+        payload: categoryData
+    },  console.log("category data logging.....", categoryData)));
 }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { getAllProducts } from '../../actions/productActions';
-import {getAllCategories} from '../../actions/categoryActions';
+import {getAllCategories, updateCategory} from '../../actions/categoryActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CategoryTableRow from './CategoryTableRow';
 import Modal from 'react-awesome-modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class CategoryTable extends Component {
@@ -14,6 +16,7 @@ class CategoryTable extends Component {
         this.categoryData = [];
         this.state = {
           modalVisibility: false,
+          originalCategoryName: "",
           categoryData: {
             name: "",
             status: ""
@@ -33,6 +36,7 @@ class CategoryTable extends Component {
 
       this.setState({ 
         modalVisibility: true,
+        originalCategoryName: values.name,
         categoryData: {
           ...this.state.categoryData,
           name: values.name,
@@ -47,7 +51,8 @@ class CategoryTable extends Component {
 
     closeModal = () => {
       this.setState({ 
-        modalVisibility: false, 
+        modalVisibility: false,
+        originalCategoryName: "", 
         categoryData: {
           ...this.state.categoryData,
           name: "",
@@ -82,6 +87,23 @@ class CategoryTable extends Component {
       })
     }
 
+    handleSubmitUpdateCategory = () => {
+      this.props.updateCategory(this.state.originalCategoryName, this.state.categoryData);
+
+      setTimeout(() => {
+        toast("Successfully updated category.", {
+          position: toast.POSITION.TOP_RIGHT,
+          className: 'toast-success-griz'
+         });
+       this.closeModal();
+      }, 200)
+
+      setTimeout(() => {
+        this.props.getAllCategories();
+      }, 100)
+      
+    }
+
    render() {
 
       if(this.props.allCategories.length > 0) {
@@ -93,6 +115,7 @@ class CategoryTable extends Component {
 
         return (
             <div>
+              <ToastContainer hideProgressBar={true} autoClose={3000} />
               <Modal visible={this.state.modalVisibility} width="450" height="350" effect="fadeInDown">
                 <div className="container">
                     <div className="row">
@@ -105,20 +128,23 @@ class CategoryTable extends Component {
                         <div className="container-fluid">
                           <div className="form-group">
                             <label className="float-left mb-0">Name</label>
-                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Enter a category name" value={this.state.categoryData.name} onChange={this.handleNameChange}/>
+                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Enter a category name" 
+                            value={this.state.categoryData.name} onChange={this.handleNameChange} />
                           </div>
                           <div>
                           <label className="float-left mb-0">Status</label>
                           <br />
                             <div class="form-check float-left">
-                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Active" checked={this.state.categoryData.status === "Active"} onChange={this.handleStatusChange}/>
+                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" 
+                              value="Active" checked={this.state.categoryData.status === "Active"} onChange={this.handleStatusChange} />
                               <label class="form-check-label" for="exampleRadios1">
                                 Active
                               </label>
                             </div>
                             <br />
                             <div class="form-check float-left">
-                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Block" checked={this.state.categoryData.status !== "Active"} onChange={this.handleStatusChange}/>
+                              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" 
+                              value="Block" checked={this.state.categoryData.status !== "Active"} onChange={this.handleStatusChange} />
                               <label class="form-check-label" for="exampleRadios2">
                                 Blocked
                               </label>
@@ -128,7 +154,7 @@ class CategoryTable extends Component {
                     </div>
                     <div className="modalOptions">
                         <button onClick={this.closeModal} className="btn btn-danger mr-2 cog-radius">No thanks</button>
-                        <button onClick={this.closeModal} className="btn btn-success cog-radius">Yes, I'm sure</button>
+                        <button onClick={this.handleSubmitUpdateCategory} className="btn btn-success cog-radius">Yes, I'm sure</button>
                     </div>
                 </div>
               </Modal>
@@ -153,6 +179,7 @@ class CategoryTable extends Component {
 CategoryTable.propTypes = {
     getAllProducts: PropTypes.func.isRequired,
     getAllCategories: PropTypes.func.isRequired,
+    updateCategory: PropTypes.func.isRequired,
     products: PropTypes.array,
     catgoryRowData: PropTypes.array,
     loaded: PropTypes.bool,
@@ -166,4 +193,4 @@ const mapStateToProps = state => ({
     allCategories: state.categoryData.allCategories
 })
 
-export default connect(mapStateToProps, {getAllProducts, getAllCategories})(CategoryTable);
+export default connect(mapStateToProps, {getAllProducts, getAllCategories, updateCategory})(CategoryTable);

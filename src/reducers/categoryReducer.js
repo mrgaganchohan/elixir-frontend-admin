@@ -1,4 +1,4 @@
-import {CATEGORY_GET_ALL, CATEGORY_GET_CATEGORY} from '../actions/types';
+import {CATEGORY_GET_ALL, CATEGORY_GET_CATEGORY, CATEGORY_UPDATE_CATEGORY} from '../actions/types';
 
 const initialState = {
     allCategories: [],
@@ -18,6 +18,8 @@ export default (state = initialState, action) => {
                 ...state,
                 category: action.payload
             }
+        case CATEGORY_UPDATE_CATEGORY:
+            return state;
         default:
             return state;
     }

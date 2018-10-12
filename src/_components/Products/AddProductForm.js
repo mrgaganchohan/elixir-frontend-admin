@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createProduct, createProductImages } from '../../actions/productActions';
+import { createProduct, getAllProducts } from '../../actions/productActions';
 import { getSubCategory } from '../../actions/subcategoryActions';
 import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';
@@ -47,10 +47,33 @@ class AddProductForm extends Component{
     }
 
     onSubmit(props){
-        console.log(props, this.state.images)
+        const formData = new FormData()
 
-        this.props.createProductImages( props, this.state.images, () => {
-            this.props.history.goBack();
+        console.log("Start");
+        console.log(props);
+        console.log("End");
+
+        formData.append("name", props.name);
+        formData.append("productId", props.productId); // number 123456 is immediately converted to a string "123456"
+        formData.append("brand", props.brand);
+        formData.append("subCategoryId", props.subCategoryId);
+        formData.append("rating", props.rating);
+        formData.append("status", props.status);
+        formData.append("description", props.description);
+        formData.append("price", props.price);
+        formData.append("discount", props.discount);
+        
+        formData.append('file', this.state.images[0]);
+        formData.append('file', this.state.images[1]);
+        formData.append('file', this.state.images[2]);
+        // formData.append('file', this.state.images[3]);
+        // formData.append('file', this.state.images[4]);
+        this.props.createProduct( formData,  () => {
+            this.props.getAllProducts()
+        
+            setTimeout(() => {
+                this.props.history.goBack();
+            }, 1000)         
         });
     }
 
@@ -84,7 +107,7 @@ class AddProductForm extends Component{
                 withIcon={true}
                 buttonText='Choose images'
                 onChange={this.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                imgExtension={['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']}
                 maxFileSize={5242880}
                 withPreview={true}
                 className="image-uploader"
@@ -191,7 +214,7 @@ AddProductForm = connect(
         initialValues: state.categoryData.allCategories,
         subCategories: state.subCategoryData.subCategory
     }),
-    { getSubCategory, createProduct },
+    { getSubCategory, createProduct, getAllProducts },
 )(AddProductForm);
 
 AddProductForm = reduxForm({

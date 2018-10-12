@@ -3,9 +3,11 @@ import {API_ADDRESS, MICRO_PRODUCTS} from '../constants/constants';
 import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT, PRODUCTS_DELETE_PRODUCT, PRODUCTS_DELETE_PRODUCT_FAILED, PRODUCTS_DELETE_PRODUCT_SUCCESS} from '../actions/types';
 import axios from 'axios';
 
-export function createProduct(props, images, callback) {
+export function createProduct(props, callback) {
+
+    const config = {headers: { 'Content-Type': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' }};
     
-    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/addImage`, props, images)
+    const req = axios.post(API_ADDRESS + MICRO_PRODUCTS + `/addImageExp`, props, config)
         .then(() => callback());
         console.log(req);
         return{

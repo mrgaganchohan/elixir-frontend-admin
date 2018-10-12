@@ -65,6 +65,7 @@ class AddProductForm extends Component{
         
         formData.append('file', this.state.images[0]);
         formData.append('file', this.state.images[1]);
+        formData.append('file', this.state.images[2]);
         this.props.createProduct( formData, () => {
             this.props.getAllProducts()
         

@@ -8,7 +8,6 @@ import Modal from 'react-awesome-modal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 class CategoryTable extends Component {
 
     constructor(props) {
@@ -24,7 +23,6 @@ class CategoryTable extends Component {
             status: ""
           }
         }
-
     }
 
     componentWillMount() {
@@ -34,7 +32,6 @@ class CategoryTable extends Component {
     openModal = (values) => {
       console.log("hitting open modal from category table row")
       console.log("values", values)
-
       console.log("values name", values.name)
 
       this.setState({ 
@@ -48,8 +45,6 @@ class CategoryTable extends Component {
        },() => {
         console.log("MODAL STATE ", this.state)
       })
-
-      
     }
 
     closeModal = () => {
@@ -68,10 +63,6 @@ class CategoryTable extends Component {
     }
 
     handleNameChange = (e) => {
-      let str = e.target.value.replace(/\s*$/,"");
-
-      console.log("string!! -> ", str)
-      
       this.setState({
         formValid: true,
         categoryData: {
@@ -81,9 +72,6 @@ class CategoryTable extends Component {
       }, () => {
        this.checkValidity();
       })
-      
-
-      
     }
 
     handleStatusChange = (e) => {
@@ -145,11 +133,11 @@ class CategoryTable extends Component {
       let nameError =  !this.state.formValid ? 
                             <div>
                               <small id="emailHelp" className="mb-0 mt-0 form-text input-error-text float-left">
-                            Cannot be empty
-                            </small>
+                                Cannot be empty
+                              </small>
                               <br />
-                            </div> :
-                            null;
+                            </div> 
+                            : null;
 
         return (
             <div>
@@ -166,7 +154,8 @@ class CategoryTable extends Component {
                         <div className="container-fluid">
                           <div className="form-group">
                             <label className="float-left mb-0">Name</label>
-                            <input type="text" className={`form-control ${this.state.nameErrorBorder}`} id="formGroupExampleInput" placeholder="Enter a category name" 
+                            <input type="text" className={`form-control ${this.state.nameErrorBorder}`} 
+                            id="formGroupExampleInput" placeholder="Enter a category name" 
                             value={this.state.categoryData.name} onChange={this.handleNameChange} />
                             {nameError}
                           </div>
@@ -175,7 +164,8 @@ class CategoryTable extends Component {
                           <br />
                             <div className="form-check float-left">
                               <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" 
-                              value="Active" checked={this.state.categoryData.status === "Active"} onChange={this.handleStatusChange} />
+                              value="Active" checked={this.state.categoryData.status === "Active"} 
+                              onChange={this.handleStatusChange} />
                               <label className="form-check-label">
                                 Active
                               </label>
@@ -183,7 +173,8 @@ class CategoryTable extends Component {
                             <br />
                             <div className="form-check float-left">
                               <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" 
-                              value="Block" checked={this.state.categoryData.status !== "Active"} onChange={this.handleStatusChange} />
+                              value="Block" checked={this.state.categoryData.status !== "Active"}
+                               onChange={this.handleStatusChange} />
                               <label className="form-check-label">
                                 Blocked
                               </label>
@@ -193,7 +184,10 @@ class CategoryTable extends Component {
                     </div>
                     <div className="modalOptions">
                         <button onClick={this.closeModal} className="btn btn-danger mr-2 cog-radius">No thanks</button>
-                        <button onClick={this.handleSubmitUpdateCategory} disabled={!this.state.formValid} className="btn btn-success cog-radius">Yes, I'm sure</button>
+                        <button onClick={this.handleSubmitUpdateCategory} disabled={!this.state.formValid} 
+                        className="btn btn-success cog-radius">
+                          Yes, I'm sure
+                        </button>
                     </div>
                 </div>
               </Modal>

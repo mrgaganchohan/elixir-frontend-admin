@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const CategoryTableRow = (props) => {
     console.log("props for category table row", props)
 
@@ -21,7 +20,6 @@ const CategoryTableRow = (props) => {
           </td>
       </tr>
     );
-  
 }
 
 export default CategoryTableRow;

@@ -32,3 +32,7 @@ export const updateCategory = (catName, category) => dispatch => {
         payload: categoryData
     },  console.log("category data logging.....", categoryData)));
 }
+
+export const addCategory = () => dispatch => {
+    //implement get category action 
+}

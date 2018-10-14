@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CategoryTable from './CategoryTable';
 
-
-
 class CategoryForm extends Component {
 
   constructor(props) {
@@ -22,6 +20,19 @@ class CategoryForm extends Component {
     //implement opening of the modal 
   }
 
+  handleNameChange = (e) => {
+    //implement on change handler here
+  }
+
+  handleStatusChange = () => {
+    //implement on change handler here
+  }
+
+  checkValidity = () => {
+    //check if form is valid 
+    //if true, submit form - otherwise disable submit button
+  }
+
   onSubmitNewCategory = () => {
     //push to the api on submit
   }
@@ -33,9 +44,16 @@ class CategoryForm extends Component {
     return (
       <div>
         <SettingsButton />
+        {/* Add modal here for add product */}
         <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-          <h3 className="float-left d-inline mb-3"><span className="fa fa-list-alt pr-2 big-icon-color"></span>Category</h3>
-          <button className="btn btn-primary cog-radius float-right mr-3"><span className="fa fa-plus pr-2"></span>Add Category</button>
+          <h3 className="float-left d-inline mb-3">
+            <span className="fa fa-list-alt pr-2 big-icon-color"></span>
+            Category
+          </h3>
+          <button className="btn btn-primary cog-radius float-right mr-3">
+            <span className="fa fa-plus pr-2"></span>
+            Add Category
+          </button>
           <CategoryTable />
         </main>
       </div>

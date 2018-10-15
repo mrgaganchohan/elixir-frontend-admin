@@ -96,7 +96,6 @@ class CategoryForm extends Component {
               nameErrorBorder: ""
             })
           }
-          
         }
   }
 

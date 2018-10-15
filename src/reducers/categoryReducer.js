@@ -14,7 +14,8 @@ export default (state = initialState, action) => {
                 allCategories: action.payload
             }
         case CATEGORY_ADD_CATEGORY:
-            //implement add category 
+        //    console.log("add category reducer method", action.payload)
+           return state;
         case CATEGORY_GET_CATEGORY:
             return {
                 ...state,

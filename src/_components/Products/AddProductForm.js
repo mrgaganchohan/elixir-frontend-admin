@@ -16,24 +16,52 @@ class AddProductForm extends Component{
 
     renderField(field){
         const { meta: { touched, error } } = field;
-        const productform = `form-group className="form-group col-lg-12 col-md-12 form-group w-75" ${touched && error ? 'has-danger' : ''}`
-
+        const productform = `form-group ${touched && error ? 'has-danger' : ''}`
+        //className="form-group col-lg-12 col-md-12 form-group w-75"
         return(
             <div className={productform}>
-                <label>{field.label}</label>
+                <label className="float-left mb-0">{field.label}</label>
                 <input 
                     className="form-control"
                     type={field.type}
                     {...field.input}
                     
                     />
-                    <div className="text-help">
+                    <div className="text-danger">
                         {touched ? error : ''}
                     </div>
 
             </div>
         );
     }
+
+    renderRadio(field) {
+
+        const { input, meta, options } = field;
+        const hasError = meta.touched && meta.error;
+
+        return (
+            <div>
+                <label className="float-left mb-0">Status</label>
+                <br />
+                {options.map(o => 
+                    <div className="float-left mr-2" >
+                    <label key={o.value}>
+                            <input type="radio" {...input} 
+                            value={o.value}
+                            checked={o.value === input.value} /> {o.title}</label>
+                        <br />
+                    </div>)}
+                
+                <div className="text-danger" >
+                    <br />
+                    {hasError && <span className="text-danger" style={{float: "left"}}>{meta.error}</span>}
+                </div>
+                <br />
+            </div>
+        );
+    }
+
     onDrop(images){
         if (images.length <= 5) {
             this.setState({
@@ -85,9 +113,9 @@ class AddProductForm extends Component{
 
     renderSubcategories(){
         if(Object.getOwnPropertyNames(this.props.subCategories).length !== 0){
-            return( 
-                <Field name="subCategoryId" component="select">        
-                    <option>Sub-Category</option>
+            return(
+                <Field name="subCategoryId" component="select" className="form-control"> 
+                    <option value="" defaultValue=""> Sub-Category </option>
                         {this.props.subCategories.map(subCategoryOption => (
                             <option value={subCategoryOption.subId} key={subCategoryOption.subId}>
                                 {subCategoryOption.name}
@@ -100,113 +128,178 @@ class AddProductForm extends Component{
 
     render() {
         const { handleSubmit } = this.props;
-
-        return(
-            <div>
-            <ImageUploader
-                withIcon={true}
-                buttonText='Choose images'
-                onChange={this.onDrop}
-                imgExtension={['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']}
-                maxFileSize={5242880}
-                withPreview={true}
-                className="image-uploader"
-                fileSizeError='File size is too big'
-                fileTypeError="is not supported file extension"
-                label='Max file size: 5mb, accepted: jpg, png, gif'
-            />
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))} enctype='multipart/form-data' >
-                <div className="col-lg-5 col-md-6">
-                    <Field
-                        label="Product Name"
-                        name="name"
-                        type="text"
-                        component={this.renderField}
-                    />
-                    <Field
-                        label="Product ID"
-                        name="productId"
-                        type="text"
-                        component={this.renderField}
-                    />
-                    <Field
-                        label="Brand Name"
-                        name="brand"
-                        type="text"
-                        component={this.renderField}
-                    />
-                     <div className="col-lg-12 col-md-12 form-group w-50">
-                            <select className="form-control" onChange={this.categoryClick.bind(this)}>
-                                <option value="" defaultValue="">Select a Category</option>
-                            {this.props.initialValues.map(categoryOption => (
-                             <option value={categoryOption.name} key={categoryOption.id}>
-                                 {categoryOption.name}
-                             </option>
-                         ))}
-                            </select>
-                    </div>
-                
-                        {this.renderSubcategories()}
-                    
-                    <Field
-                        label="Rating"
-                        name="rating"
-                        type="text"
-                        component={this.renderField}
-                    />
-                        <div>
-                            <label>Status</label>
-                            <div>
-                            <label>
-                                <Field
-                                name="status"
-                                component="input"
-                                type="radio"
-                                value="Active"
-                                />{' '}
-                                Active
-                            </label>
-                            <label>
-                                <Field
-                                name="status"
-                                component="input"
-                                type="radio"
-                                value="Inactive"
-                                />{' '}
-                                Inactive
-                            </label>
-                            </div>
-                        </div>
-                    <Field
-                        label="Product Description"
-                        name="description"
-                        type="text"
-                        component={this.renderField}
-                    />
-                    <Field
-                        label="Price"
-                        name="price"
-                        type="text"
-                        component={this.renderField}
-                    />
-                    <Field
-                        label="Discount"
-                        name="discount"
-                        type="text"
-                        component={this.renderField}
-                    />
-                     
-                </div>
-                <button type="submit" className="btn btn-success cog-radius float-right">Submit</button>
-                <Link className="btn btn-light cog-radius float-right mr-3" to="/products">Cancel</Link>
-            </form>
-            </div>
         
-            )};
+        return(
+            <div className="justify-content-center align-items-center">
+                <div className="row">
+                    <div className="col-md-6">
+                        <form onSubmit={handleSubmit(this.onSubmit.bind(this))} enctype='multipart/form-data' >
+                            <div className="col-md-12">
+                                <div>
+                                    <Field
+                                        label="Product Name"
+                                        name="name"
+                                        type="text"
+                                        component={this.renderField} 
+                                    />
+                                </div>
+                                <div>
+                                    <Field
+                                        label="Product ID"
+                                        name="productId"
+                                        type="text"
+                                        component={this.renderField}
+                                    />
+                                </div>
+                                <div>    
+                                    <Field
+                                        label="Brand Name"
+                                        name="brand"
+                                        type="text"
+                                        component={this.renderField}
+                                    />
+                                </div>
+                                <div className=" ">
+                                    <label className="float-left mb-0">Category</label>
+                                    <select className="form-control" onChange={this.categoryClick.bind(this)}>
+                                        <option value="" defaultValue="">Select a Category</option>
+                                            {this.props.initialValues.map(categoryOption => (
+                                                <option value={categoryOption.name} key={categoryOption.id}>
+                                                    {categoryOption.name}
+                                                </option>
+                                            ))}
+                                    </select>
+                                </div>
+
+                                <div className="mt-3">
+                                    {this.renderSubcategories()}
+                                </div>
+
+                                <div className="mt-3">
+                                    <Field
+                                        label="Rating"
+                                        name="rating"
+                                        type="text"
+                                        component={this.renderField}
+                                    />
+                                </div>
+                                <div>
+                                    <Field component={this.renderRadio}
+                                        label="Status"
+                                        name="status" required={true} 
+                                        options={[
+                                            { title: 'Active', value: 'active' },
+                                            { title: 'Inactive', value: 'inactive' }
+                                            ]} 
+                                    />
+                                </div>
+
+                                <div>
+                                    <Field
+                                        label="Product Description"
+                                        name="description"
+                                        type="text"
+                                        component={this.renderField}
+                                    />
+                                </div>
+                                <div>
+                                    <Field
+                                        label="Price"
+                                        name="price"
+                                        type="text"
+                                        component={this.renderField}
+                                    />
+                                </div>
+                                <div>
+                                    <Field
+                                        label="Discount"
+                                        name="discount"
+                                        type="text"
+                                        component={this.renderField}
+                                    />
+                                </div>
+                                    
+                                <div>
+                                    <button type="submit" className="btn btn-success cog-radius float-right">Submit</button>
+                                    <Link className="btn btn-light cog-radius float-right mr-3" to="/products">Cancel</Link>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div className="col-md-6">
+                        <ImageUploader
+                            withIcon={true}
+                            buttonText='Choose images'
+                            onChange={this.onDrop}
+                            imgExtension={['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']}
+                            maxFileSize={5242880}
+                            withPreview={true}
+                            fileSizeError='File size is too big'
+                            fileTypeError="is not supported file extension"
+                            label='Max file size: 5mb, accepted: jpg, png'
+                        />
+                    </div>
+                </div>
+              
+            </div>
+        )};
 }
 
-function validate(data){
+function validate(values){
     const errors = {};
+    console.log(values.subCategoryId)
+
+    //validate no numbers
+    if (!values.name) {
+        errors.name = "Enter a product name";
+    }
+    
+    //validate no spaces
+    if (!values.productId) {
+        errors.productId = "Enter the product ID";
+    }
+
+    //validate no numbers
+    if (!values.brand) {
+        errors.brand = "Enter the brand name";
+    }
+
+    if (!values.status) {
+        errors.status = "Choose a status";
+    }
+
+    //validate only numbers
+    if (!values.price) {
+        errors.price = "Please enter a price";
+    }
+
+    // validate only numbers   
+    if (!values.discount) {
+        errors.discount = "Please enter a discount";
+    }
+
+    if (!values.description) {
+        errors.description = "Please enter the product description";
+    }
+    
+    //validating that rating is not a string. Only accepts numbers between 0-5 
+    if (!values.rating) {
+        errors.rating = "Please choose a rating";
+    } else if (values.rating >= 5 || values.rating <= 0) {
+            errors.rating = "Rating must be between 0 and 5";
+    } else if (isNaN(Number(values.rating))){
+            errors.rating= "Must be a number between 0 and 5";
+    }
+
+    //validate category
+
+    //validate subcat
+    if (!values.subCategoryId) {
+        errors.subCategoryId = "Please choose a subcategory";
+    }
+
+    return errors;
 }
 
 AddProductForm = connect(
@@ -218,6 +311,7 @@ AddProductForm = connect(
 )(AddProductForm);
 
 AddProductForm = reduxForm({
+    validate,
     form: 'AddProductForm',
 })(AddProductForm);
 

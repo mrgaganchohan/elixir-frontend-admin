@@ -18,13 +18,7 @@ class AddProduct extends Component {
                     <h1 className="text-left">Add Product</h1>
                     <hr />
                 </div>
-               <div className="row marg-top-25">
-                    <div className="col-lg-5 col-md-6">
-                        
-                    </div>
-               </div>
-               
-               <AddProductForm history={this.props.history}/>
+                    <AddProductForm history={this.props.history}/>
                 </main>
             </div>
         )

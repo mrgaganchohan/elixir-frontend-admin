@@ -1,4 +1,4 @@
-import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT, PRODUCTS_DELETE_PRODUCT_SUCCESS, PRODUCTS_DELETE_PRODUCT_FAILED} from '../actions/types';
+import {PRODUCTS_GET_ALL, PRODUCTS_GET_PRODUCT, PRODUCTS_ADD_PRODUCT, PRODUCT_ADD_IMAGE, PRODUCTS_DELETE_PRODUCT_SUCCESS, PRODUCTS_DELETE_PRODUCT_FAILED} from '../actions/types';
 
 const initialState = {
     allProducts: [],
@@ -31,6 +31,16 @@ export default (state = initialState, action) => {
                 productDeleteMessage: action.payload,
                 isError: true
             }
+        // case PRODUCT_ADD_IMAGE:
+        //  return {
+        //      ...state,
+        //      images: [
+        //          {
+        //              name: action.url,
+        //              sort: action.sort
+        //          }
+        //      ]
+        //  }
         default:
             return state;
     }

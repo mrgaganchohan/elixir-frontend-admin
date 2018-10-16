@@ -7,6 +7,9 @@ import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';
 import ImageUploader from 'react-images-upload';
 
+const required = value => value ? undefined : 'Required'
+
+
 class AddProductForm extends Component{
     constructor(props) {
         super(props);
@@ -270,11 +273,15 @@ function validate(values){
     //validate only numbers
     if (!values.price) {
         errors.price = "Please enter a price";
+    } else if (isNaN(Number(values.price))){
+        errors.price= "Must be a number!";
     }
 
     // validate only numbers   
     if (!values.discount) {
         errors.discount = "Please enter a discount";
+    } else if (isNaN(Number(values.discount))){
+        errors.discount= "Must be a number!";
     }
 
     if (!values.description) {
@@ -284,7 +291,7 @@ function validate(values){
     //validating that rating is not a string. Only accepts numbers between 0-5 
     if (!values.rating) {
         errors.rating = "Please choose a rating";
-    } else if (values.rating >= 5 || values.rating <= 0) {
+    } else if (values.rating > 5 || values.rating < 0) {
             errors.rating = "Rating must be between 0 and 5";
     } else if (isNaN(Number(values.rating))){
             errors.rating= "Must be a number between 0 and 5";

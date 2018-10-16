@@ -147,7 +147,6 @@ class CategoryTable extends Component {
       setTimeout(() => {
         this.props.getAllCategories();
       }, 100)
-    
     }
     
    render() {
@@ -262,7 +261,6 @@ class CategoryTable extends Component {
             </table>
             </div>
         );
-        
     }
 }
 

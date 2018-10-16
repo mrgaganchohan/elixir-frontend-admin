@@ -32,7 +32,6 @@ class CategoryForm extends Component {
   }
 
   openAddNewCategoryModal = () => {
-    //implement opening of the modal 
     this.setState({modalVisibility:true})
   }
 
@@ -51,7 +50,6 @@ class CategoryForm extends Component {
   }
 
   handleNameChange = (e) => {
-    //implement on change handler here
     this.setState({
       categoryData: {
         ...this.state.categoryData,
@@ -100,9 +98,7 @@ class CategoryForm extends Component {
   }
 
   onSubmitNewCategory = () => {
-    //push to the api on submit
     let categoryData = this.state.categoryData;
-    console.log("cat data to be passed ", categoryData);
 
     this.props.addCategory(categoryData);
     
@@ -120,8 +116,7 @@ class CategoryForm extends Component {
   }
 
   render() {
-
-    console.log("all cats in category ", this.props.allCategories)
+    // console.log("all cats in category ", this.props.allCategories)
 
     let nameError = !this.state.formValid && this.state.formValid !== null? 
     <div>

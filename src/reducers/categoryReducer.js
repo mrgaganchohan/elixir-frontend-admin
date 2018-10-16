@@ -8,13 +8,11 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
         case CATEGORY_GET_ALL:
-            // console.log("CATEGORY DATA BEING HIT REDUCER");
             return {
                 ...state,
                 allCategories: action.payload
             }
         case CATEGORY_ADD_CATEGORY:
-        //    console.log("add category reducer method", action.payload)
            return state;
         case CATEGORY_GET_CATEGORY:
             return {

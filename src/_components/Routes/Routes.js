@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { getAdminInfo } from '../../actions/adminActions';
 import { getAllProducts } from '../../actions/productActions';
 import store from '../../store/store';
+import Category from '../Category/Category';
 
 class Routes extends Component {
     componentWillMount() {
@@ -30,6 +31,7 @@ class Routes extends Component {
                 <Switch>
                     <Route path="/login" component={Login}/>
                     <PrivateRoute path="/products" component={Products} isAuthed={this.props.isAuthenticated}/>
+                    <PrivateRoute path="/category" component={Category} isAuthed={this.props.isAuthenticated}/>
                     <PrivateRoute path="/product/view/:id" component={ViewProduct} isAuthed={this.props.isAuthenticated}/>
                     <PrivateRoute path="/product/add" component={AddProduct} isAuthed={this.props.isAuthenticated}/>
                     <PrivateRoute path="/settings" component={Settings} isAuthed={this.props.isAuthenticated}/>

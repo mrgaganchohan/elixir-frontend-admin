@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getAllProducts } from '../../actions/productActions';
-import {getAllCategories, updateCategory} from '../../actions/categoryActions';
+import {getAllCategories, updateCategory, deleteCategory} from '../../actions/categoryActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CategoryTableRow from './CategoryTableRow';
@@ -15,10 +15,12 @@ class CategoryTable extends Component {
         this.categoryData = [];
         this.state = {
           modalVisibility: false,
+          deleteModalVisibility: false,
           formValid: true,
           nameErrorBorder: "",
           originalCategoryName: "",
           categoryData: {
+            id: null,
             name: "",
             status: ""
           }
@@ -39,6 +41,7 @@ class CategoryTable extends Component {
         originalCategoryName: values.name,
         categoryData: {
           ...this.state.categoryData,
+          id: values.catId,
           name: values.name,
           status: values.status
         }
@@ -54,6 +57,7 @@ class CategoryTable extends Component {
         nameErrorBorder: "", 
         categoryData: {
           ...this.state.categoryData,
+          id: null,
           name: "",
           status: ""
         }
@@ -105,7 +109,6 @@ class CategoryTable extends Component {
     }
 
     checkValidity = () => {
-
       let nameInput = this.state.categoryData.name.trim();
 
         if(nameInput.length < 1) {
@@ -121,11 +124,36 @@ class CategoryTable extends Component {
         }
     }
 
+    openDeleteModal = () => {
+      this.setState({ deleteModalVisibility: true })
+    }
+
+    closeDeleteModal = () => {
+      this.setState({ deleteModalVisibility: false })
+    }
+
+    confirmDeleteCategory = () => {
+      this.props.deleteCategory(this.state.categoryData.id);
+
+      setTimeout(() => {
+        toast(`Successfully deleted ${this.state.categoryData.name}.`, {
+          position: toast.POSITION.TOP_RIGHT,
+          className: 'toast-success-griz'
+         });
+         this.closeDeleteModal();
+      this.closeModal();
+      }, 200)
+
+      setTimeout(() => {
+        this.props.getAllCategories();
+      }, 100)
+    
+    }
+    
    render() {
 
       if(this.props.allCategories.length > 0) {
         this.categoryData = this.props.allCategories.map((data) => {
-          // console.log("data data data", data)
           return <CategoryTableRow key={data.catId} catData={data} openModal={this.openModal}/>
         })
       }
@@ -142,7 +170,7 @@ class CategoryTable extends Component {
         return (
             <div>
               <ToastContainer hideProgressBar={true} autoClose={3000} />
-              <Modal visible={this.state.modalVisibility} width="450" height="350" effect="fadeInDown">
+              <Modal visible={this.state.modalVisibility} width="450" height="400" effect="fadeInDown">
                 <div className="container">
                     <div className="row">
                         <div className="col text-left" >
@@ -188,6 +216,35 @@ class CategoryTable extends Component {
                         className="btn btn-success cog-radius">
                           Yes, I'm sure
                         </button>
+                        <div className="container-fluid mt-3">
+                            <hr />
+                            <button className="btn btn-outline-danger cog-radius btn-block"
+                                    onClick={this.openDeleteModal}>
+                            <span className="fa fa-trash pr-2"></span>
+                            Delete</button>
+                          </div>
+                    </div>
+                </div>
+              </Modal>
+              <Modal visible={this.state.deleteModalVisibility} width="450" height="250" effect="fadeInUp">
+                <div className="container">
+                    <div className="row">
+                        <div className="col text-left" >
+                            <h2 className="text-left mb-0 modalHeader">
+                            <span className="fa fa-trash big-icon-color pr-2"></span>
+                            Delete Category</h2>
+                            <hr className="mt-2 mb-3" />
+                        </div>
+                        <div className="container-fluid">
+                         <h4>Are you sure you want to delete</h4>
+                         <h3><strong>{this.state.categoryData.name}</strong></h3>
+                        </div>
+                    </div>
+                    <div className="modalOptions">
+                        <button onClick={this.closeDeleteModal} className="btn btn-danger mr-2 cog-radius">No thanks</button>
+                        <button onClick={this.confirmDeleteCategory} className="btn btn-success cog-radius">
+                          Yes, I'm sure
+                        </button>
                     </div>
                 </div>
               </Modal>
@@ -212,6 +269,7 @@ class CategoryTable extends Component {
 CategoryTable.propTypes = {
     getAllProducts: PropTypes.func.isRequired,
     getAllCategories: PropTypes.func.isRequired,
+    deleteCategory: PropTypes.func.isRequired,
     updateCategory: PropTypes.func.isRequired,
     products: PropTypes.array,
     catgoryRowData: PropTypes.array,
@@ -226,4 +284,4 @@ const mapStateToProps = state => ({
     allCategories: state.categoryData.allCategories
 })
 
-export default connect(mapStateToProps, {getAllProducts, getAllCategories, updateCategory})(CategoryTable);
+export default connect(mapStateToProps, {getAllProducts, getAllCategories, updateCategory, deleteCategory})(CategoryTable);

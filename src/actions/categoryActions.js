@@ -1,6 +1,10 @@
 //implement calls to category api
 import {API_ADDRESS, MICRO_CATEGORY} from '../constants/constants';
-import {CATEGORY_GET_ALL, CATEGORY_GET_CATEGORY, CATEGORY_UPDATE_CATEGORY, CATEGORY_ADD_CATEGORY} from '../actions/types';
+import {CATEGORY_GET_ALL, 
+        CATEGORY_GET_CATEGORY, 
+        CATEGORY_UPDATE_CATEGORY, 
+        CATEGORY_ADD_CATEGORY,
+         CATEGORY_DELETE_CATEGORY} from '../actions/types';
 import axios from 'axios';
 
 export const getAllCategories = () => dispatch => {
@@ -39,6 +43,15 @@ export const addCategory = (categoryData) => dispatch => {
     .catch(error => console.log(error))
     .then(res => dispatch({
         type: CATEGORY_ADD_CATEGORY,
+        payload: res
+    }))
+}
+
+export const deleteCategory = (id) => dispatch => {
+    axios.delete(API_ADDRESS + MICRO_CATEGORY + `/delete/${id}`)
+    .catch(error => console.log(error))
+    .then(res => dispatch({
+        type: CATEGORY_DELETE_CATEGORY,
         payload: res
     }))
 }

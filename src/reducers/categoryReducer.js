@@ -1,4 +1,4 @@
-import {CATEGORY_GET_ALL, CATEGORY_GET_CATEGORY, CATEGORY_UPDATE_CATEGORY, CATEGORY_ADD_CATEGORY} from '../actions/types';
+import {CATEGORY_GET_ALL, CATEGORY_GET_CATEGORY, CATEGORY_UPDATE_CATEGORY, CATEGORY_ADD_CATEGORY, CATEGORY_DELETE_CATEGORY} from '../actions/types';
 
 const initialState = {
     allCategories: [],
@@ -21,6 +21,8 @@ export default (state = initialState, action) => {
                 ...state,
                 category: action.payload
             }
+        case CATEGORY_DELETE_CATEGORY:
+            return state;
         case CATEGORY_UPDATE_CATEGORY:
             return state;
         default:

@@ -17,7 +17,7 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        this.props.getAdminInfo("andysek@test.com");
+        // this.props.getAdminInfo("andysek@test.com");
         this.props.getAllProducts();
         //console.log("will Mount dash", this.props.adminDetails);
         //console.log("DASHBOARD authenticatd = ", this.props.isAuthenticated)

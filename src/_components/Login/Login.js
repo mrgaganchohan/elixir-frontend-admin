@@ -19,64 +19,69 @@ class Login extends Component {
         this.state = {
             userEmail: "",
             userPass: "",
-            authed: false
+            authed: false,
+            hasFinished: true
         }
     }
 
     componentWillMount() {
         //auto login user for development
-        this.props.getAdminInfo("test@test.com")
-        this.props.authenticateUser();
+        // this.props.getAdminInfo("test@test.com")
+        // this.props.authenticateUser();
     }
 
     handleLogin = () => {
+        if(this.state.hasFinished) {
 
-        //api call to check if email exists
-        //if successful, check password
-        //if password is successful, login -- otherwise show error
+            this.setState({ hasFinished: false })
+            
+            this.props.getAdminInfo(this.state.userEmail);
 
-       this.props.getAdminInfo(this.state.userEmail);
-
-       setTimeout(() => {
-           if(Object.keys(this.props.adminDetails).length !== 0) {
-            if(this.state.userPass !== PASS){
-                toast.error("Invalid password. Please try again.", {
-                    position: toast.POSITION.TOP_RIGHT,
-                    className: 'toast-failed-griz'
-                   });
-            }
-            else {
-                this.props.authenticateUser();
-                console.log("hiting succesfull login....")
-            }
-           }
-           console.log("admin data object test", this.props.adminDetails)
-           if(Object.keys(this.props.adminDetails).length === 0 
-                && this.props.adminDetails.constructor === Object){
-            if(this.props.authError){
-                if(this.state.userPass !== PASS){
-                    toast.error("Invalid email and password. Try again.", {
-                        position: toast.POSITION.TOP_RIGHT,
-                        className: 'toast-failed-griz'
-                    });
+            setTimeout(() => {
+                if(Object.keys(this.props.adminDetails).length !== 0) {
+                    if(this.state.userPass !== PASS){
+                        toast.error("Invalid password. Please try again.", {
+                            position: toast.POSITION.TOP_RIGHT,
+                            className: 'toast-failed-griz'
+                        });
+                    }
+                    else {
+                        this.props.authenticateUser();
+                        console.log("hiting succesfull login....")
+                    }
                 }
-                else {
-                    toast.error("Invalid email account.", {
-                        position: toast.POSITION.TOP_RIGHT,
-                        className: 'toast-failed-griz'
-                    });
+                console.log("admin data object test", this.props.adminDetails)
+                if(Object.keys(this.props.adminDetails).length === 0 
+                        && this.props.adminDetails.constructor === Object){
+                    if(this.props.authError){
+                        if(this.state.userPass !== PASS){
+                            toast.error("Invalid email and password. Try again.", {
+                                position: toast.POSITION.TOP_RIGHT,
+                                className: 'toast-failed-griz'
+                            });
+                        }
+                        else {
+                            toast.error("Invalid email account.", {
+                                position: toast.POSITION.TOP_RIGHT,
+                                className: 'toast-failed-griz'
+                            });
+                        }
+                    }
+                    if(!this.props.authError) {
+                        if(this.state.userPass !== PASS){
+                            toast.error("Invalid email and password. Try again.", {
+                                position: toast.POSITION.TOP_RIGHT,
+                                className: 'toast-failed-griz'
+                            });
+                        }
+                    }
                 }
-            }
-            if(!this.props.authError) {
-                if(this.state.userPass !== PASS){
-                    toast.error("Invalid email and password. Try again.", {
-                        position: toast.POSITION.TOP_RIGHT,
-                        className: 'toast-failed-griz'
-                    });
-                }
-            }
-           }
-       }, 500)
+            }, 500)
+            
+            setTimeout(() => {
+                this.setState({ hasFinished: true })
+            }, 2000)
+        }
 
     }
 

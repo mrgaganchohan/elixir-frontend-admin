@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {getAllProducts} from '../../actions/productActions';
 import {getAllCategories} from '../../actions/categoryActions';
+import {getAllSubCategories} from '../../actions/subcategoryActions';
 
 class ProductForm extends Component {
 
@@ -21,6 +22,8 @@ class ProductForm extends Component {
 
         this.initialData = [];
 
+        this.allSubcategories = this.props.allSubcategories;
+
         this.populatedCats = false;
         this.updatedProductInfo = [];
         this.loadedNewData = false;
@@ -32,6 +35,7 @@ class ProductForm extends Component {
 
     componentWillMount() {
         this.props.getAllCategories();
+        this.props.getAllSubCategories();
     }
 
 
@@ -256,7 +260,12 @@ class ProductForm extends Component {
 
     render() {
 
-        if(!this.populatedCats && this.props.allCategories.length > 0 && !this.loadedNewData) {
+        if(this.allSubcategories.length > 0) {
+            console.log("all sub categories here", this.allSubcategories);
+        }
+
+        if(!this.populatedCats && this.props.allCategories.length > 0 && !this.loadedNewData
+            && this.allSubcategories.length > 0) {
             this.updatedProductInfo = [];
 
             
@@ -270,8 +279,8 @@ class ProductForm extends Component {
                 let subCategoryNumber = data.product.subCategoryId;
                 console.log("Sub category ID:", subCategoryNumber)
             
-                let found = this.props.allCategories.filter(category => {
-                  if(category.catId === subCategoryNumber) {
+                let found = this.props.allSubcategories.filter(category => {
+                  if(category.subId === subCategoryNumber) {
                       return category.name;
                   }
                 })
@@ -279,7 +288,7 @@ class ProductForm extends Component {
                 console.log("FOUD ROW ", found)
 
                 if(found[0] === undefined) {
-                    let defaultNotFound = [{name: "not found"}];
+                    let defaultNotFound = "not found"
                     this.props.products[index].product.category = defaultNotFound;
                     data.product.category = defaultNotFound;
                 } else {
@@ -338,15 +347,18 @@ class ProductForm extends Component {
 
 ProductForm.propTypes = {
     getAllCategories: PropTypes.func.isRequired,
+    getAllSubCategories: PropTypes.func.isRequired,
     products: PropTypes.array,
     product: PropTypes.object,
-    allCategories: PropTypes.array
+    allCategories: PropTypes.array,
+    allSubcategories: PropTypes.array
 }
 
 const mapStateToProps = state => ({
     products: state.productData.allProducts,
     product: state.productData.product,
-    allCategories: state.categoryData.allCategories
+    allCategories: state.categoryData.allCategories,
+    allSubcategories: state.subCategoryData.allSubCategories
 })
 
-export default connect(mapStateToProps, {getAllProducts, getAllCategories})(ProductForm);
+export default connect(mapStateToProps, {getAllProducts, getAllCategories, getAllSubCategories})(ProductForm);

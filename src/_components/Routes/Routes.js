@@ -16,7 +16,7 @@ import Category from '../Category/Category';
 
 class Routes extends Component {
     componentWillMount() {
-        this.props.getAdminInfo("andysek@test.com");
+        // this.props.getAdminInfo("andysek@test.com");
         this.props.getAllProducts();
         // console.log('routes here...')
         // console.log("Authenticated == ", this.props.isAuthenticated)

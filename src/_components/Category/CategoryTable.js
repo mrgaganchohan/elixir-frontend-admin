@@ -272,7 +272,7 @@ CategoryTable.propTypes = {
     products: PropTypes.array,
     catgoryRowData: PropTypes.array,
     loaded: PropTypes.bool,
-    subCategory: PropTypes.string,
+    subCategory: PropTypes.object,
     allCategories: PropTypes.array
 }
 

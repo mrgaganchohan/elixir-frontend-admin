@@ -55,8 +55,7 @@ class ProductsTable extends Component {
                     {this.productRows}
                 </tbody>
             </table>
-        );
-        
+        );   
     }
 }
 
@@ -66,14 +65,14 @@ ProductsTable.propTypes = {
     products: PropTypes.array,
     tableRows: PropTypes.array,
     loaded: PropTypes.bool,
-    subCategory: PropTypes.string,
+    subCategory: PropTypes.object,
     allCategories: PropTypes.array
 }
 
 const mapStateToProps = state => ({
     products: state.productData.allProducts,
     subCategory: state.subCategoryData.subCategory,
-    allCategories: state.categoryData.allCategories
+    allCategories: state.categoryData.allSubCategories
 })
 
 export default connect(mapStateToProps, {getAllProducts, getAllCategories})(ProductsTable);

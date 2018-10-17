@@ -41,7 +41,7 @@ class ProductsTable extends Component {
         }
         
         return (
-            <table className="table table-striped mt-3">
+            <table className="table table-striped mt-3 products-table">
                 <thead>
                     <tr className="d-flex">
                         <th className="p-2 text-left col-lg-5">Name</th>

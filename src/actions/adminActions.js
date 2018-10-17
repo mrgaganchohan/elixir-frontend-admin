@@ -1,16 +1,24 @@
 //implement admin calls to api
 import {API_ADDRESS, MICRO_ADMIN} from '../constants/constants';
-import {ADMIN_GET_DATA, ADMIN_UPDATE_INFO} from '../actions/types';
+import {ADMIN_GET_DATA, ADMIN_UPDATE_INFO, ADMIN_FAILED_AUTH, ADMIN_LOGOUT, ADMIN_AUTHENTICATED} from '../actions/types';
 import axios from 'axios';
 
 export const getAdminInfo = (email) => dispatch => {
     //console.log("get admin info");
     axios.get(API_ADDRESS + MICRO_ADMIN + `/${email}`)
-    .catch(error => console.log(error.status))
+    
     .then(res => res)
-    .then(adminData => dispatch({
-        type: ADMIN_GET_DATA,
-        payload: adminData.data
+    .then(adminData => {
+        if(adminData.status !== 200) {
+            throw Error(adminData.status)
+        }
+        dispatch({
+            type: ADMIN_GET_DATA,
+            payload: adminData.data
+        }, console.log("response of admin data", adminData))
+    })
+    .catch(error => dispatch({
+        type: ADMIN_FAILED_AUTH
     }));
 }
 
@@ -26,10 +34,16 @@ export const updateAdminInfo = (email, adminData) => dispatch => {
     }));
 }
 
-//this function is for security testing locally 
 export const authenticateUser = () => dispatch => {
     dispatch({
-        type: "AUTH",
+        type: ADMIN_AUTHENTICATED,
         payload: true
+    })
+}
+
+export const logoutUser = () => dispatch => {
+    dispatch({
+        type: ADMIN_LOGOUT,
+        payload: false
     })
 }

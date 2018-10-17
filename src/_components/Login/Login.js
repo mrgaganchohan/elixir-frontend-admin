@@ -25,7 +25,8 @@ class Login extends Component {
 
     componentWillMount() {
         //auto login user for development
-        //this.props.authenticateUser();
+        this.props.getAdminInfo("test@test.com")
+        this.props.authenticateUser();
     }
 
     handleLogin = () => {

@@ -25,7 +25,7 @@ export const getAllProducts = () => dispatch => {
     .then(products => dispatch({
         type: PRODUCTS_GET_ALL,
         payload: products.data
-    }));
+    },console.log("PRODUCTS GET ALL PRODUCTS", products)));
 }
 
 export const getProduct = (id) => dispatch => {

@@ -9,7 +9,7 @@ import Modal from 'react-awesome-modal';
 
 const ViewProductInfo = (props) => { 
 
-    console.table(props)
+    console.log("props that hve been passed down", props)
 
     let image = props.data.list.length === 1 ? 
     <img width="100%" height="400" width="350" alt="" src={props.data.list[0]}/> 

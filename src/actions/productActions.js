@@ -41,7 +41,7 @@ export const getProduct = (id) => dispatch => {
 
 export const deleteProduct = (id) => dispatch => {
     //console.log("get product info");
-    axios.get(API_ADDRESS + MICRO_PRODUCTS + `/delete/${id}`)
+    axios.delete(API_ADDRESS + MICRO_PRODUCTS + `/delete/${id}`)
     .catch(error => dispatch({
         type: PRODUCTS_DELETE_PRODUCT_FAILED,
         payload: error.data

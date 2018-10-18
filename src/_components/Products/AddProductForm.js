@@ -2,19 +2,28 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createProduct, getAllProducts } from '../../actions/productActions';
-import { getSubCategory } from '../../actions/subcategoryActions';
+import { getSubCategory, getSubCategoriesByCategory } from '../../actions/subcategoryActions';
 import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';
 import ImageUploader from 'react-images-upload';
 
 const required = value => value ? undefined : 'Required'
 
-
 class AddProductForm extends Component{
     constructor(props) {
         super(props);
-        this.state = { images: [] };
+        this.state = { 
+            images: [],
+            categorySelected: false
+        };
         this.onDrop = this.onDrop.bind(this);
+    }
+
+    toggleCategorySelected = (type) => {
+
+        this.setState({
+            categorySelected: type
+        })
     }
 
     renderField(field){
@@ -108,16 +117,23 @@ class AddProductForm extends Component{
 
     categoryClick(event){
         if(event.target.value){
-            this.props.getSubCategory(event.target.value);
+            // this.props.getSubCategory(event.target.value);
+            this.props.getSubCategoriesByCategory(event.target.value);
+
+            this.renderSubcategories();
+            this.toggleCategorySelected(true);
+        }
+        else {
+            this.toggleCategorySelected(false)
         }
     }
 
     renderSubcategories(){
-        if(Object.getOwnPropertyNames(this.props.subCategories).length !== 0){
+        if(this.props.allSubCategoriesByCategory.length > 0 && this.state.categorySelected){
             return(
                 <Field name="subCategoryId" component="select" className="form-control"> 
                     <option value="" defaultValue=""> Sub-Category </option>
-                        {this.props.subCategories.map(subCategoryOption => (
+                        {this.props.allSubCategoriesByCategory.map(subCategoryOption => (
                             <option value={subCategoryOption.subId} key={subCategoryOption.subId}>
                                 {subCategoryOption.name}
                             </option>
@@ -310,9 +326,9 @@ function validate(values){
 AddProductForm = connect(
     state => ({
         initialValues: state.categoryData.allCategories,
-        subCategories: state.subCategoryData.subCategory
+        allSubCategoriesByCategory: state.subCategoryData.allSubCategoriesByCategory
     }),
-    { getSubCategory, createProduct, getAllProducts },
+    { createProduct, getAllProducts, getSubCategoriesByCategory },
 )(AddProductForm);
 
 AddProductForm = reduxForm({

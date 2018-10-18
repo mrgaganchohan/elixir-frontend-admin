@@ -1,6 +1,6 @@
 //implement subcategory api calls
 import {API_ADDRESS, MICRO_SUB_CATEGORY} from '../constants/constants';
-import {SUBCATEGORY_GET_ALL, SUBCATEGORY_GET_SUBCATEGORY} from '../actions/types';
+import {SUBCATEGORY_GET_ALL, SUBCATEGORY_GET_SUBCATEGORY, SUBCATEGORY_GET_BY_CATEGORY} from '../actions/types';
 import axios from 'axios';
 
 export const getAllSubCategories = () => dispatch => {
@@ -24,4 +24,15 @@ export const getSubCategory = (subcategory) => dispatch => {
             payload: subcategoryData.data
         })
     });
+}
+
+export const getSubCategoriesByCategory = (subcategory) => dispatch => {
+    axios.get(API_ADDRESS + MICRO_SUB_CATEGORY + `/${subcategory}`)
+    .then(subcategoryData => { console.log(subcategoryData)
+        dispatch({
+            type: SUBCATEGORY_GET_BY_CATEGORY,
+            payload: subcategoryData.data
+        })
+    })
+    .catch(error => console.log(error.status))
 }

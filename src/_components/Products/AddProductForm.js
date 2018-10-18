@@ -14,7 +14,8 @@ class AddProductForm extends Component{
         super(props);
         this.state = { 
             images: [],
-            categorySelected: false
+            categorySelected: false, 
+            imageError: 'none'
         };
         this.onDrop = this.onDrop.bind(this);
     }
@@ -77,7 +78,8 @@ class AddProductForm extends Component{
     onDrop(images){
         if (images.length <= 5) {
             this.setState({
-                images: images
+                images: images,
+                imageError: 'none'
             });
         }
         else {
@@ -87,6 +89,12 @@ class AddProductForm extends Component{
     }
 
     onSubmit(props){
+
+        if ( this.state.images.length === 0 ) {
+            this.setState({imageError : ''})
+                return;
+        }
+        
         const formData = new FormData()
 
         console.log("Start");
@@ -256,6 +264,7 @@ class AddProductForm extends Component{
                             fileTypeError="is not supported file extension"
                             label='Max file size: 5mb, accepted: jpg, png'
                         />
+                        <div className="text-danger" style={{display: this.state.imageError}}>Image Required</div>
                     </div>
                 </div>
               
@@ -264,8 +273,8 @@ class AddProductForm extends Component{
 }
 
 function validate(values){
+    
     const errors = {};
-    console.log(values.subCategoryId)
 
     //validate no numbers
     if (!values.name) {

@@ -6,6 +6,8 @@ import { getSubCategory, getSubCategoriesByCategory } from '../../actions/subcat
 import { load as loadCategories } from '../../reducers/categoryReducer';
 import {Link} from 'react-router-dom';
 import ImageUploader from 'react-images-upload';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const required = value => value ? undefined : 'Required'
 
@@ -119,7 +121,12 @@ class AddProductForm extends Component{
         
             setTimeout(() => {
                 this.props.history.goBack();
-            }, 1000)
+            }, 2000)
+            
+            toast(`${props.name} added successfully.`, {
+                position: toast.POSITION.TOP_RIGHT,
+                className: 'toast-success-griz'
+               });
         });
     }
 
@@ -156,6 +163,7 @@ class AddProductForm extends Component{
         
         return(
             <div className="justify-content-center align-items-center">
+            <ToastContainer hideProgressBar={true} autoClose={2000} />
                 <div className="row">
                     <div className="col-md-6">
                         <form onSubmit={handleSubmit(this.onSubmit.bind(this))} enctype='multipart/form-data' >
